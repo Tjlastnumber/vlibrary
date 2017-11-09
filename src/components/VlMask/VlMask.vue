@@ -31,7 +31,6 @@
         this.$emit('closed')
       },
       click () {
-        console.info('clicked')
         this.$emit('clicked')
       }
     }
@@ -52,7 +51,7 @@
 
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity .5s
+    transition: opacity .3s
   }
 
   .fade-enter,
