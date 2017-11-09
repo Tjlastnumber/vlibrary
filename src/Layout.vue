@@ -3,7 +3,7 @@
     <vl-layout>
 
       <vl-side-layout>
-        <vl-sidenav v-model="isOpen" :toggle-width="960" style="background-color: white">
+        <vl-sidenav class="sidenav-background" v-model="isOpen" :toggle-width="960">
             <!-- <vl-toolbar-sub > -->
             <header class="nav-header">
               <a href="#" class="nav-log">
@@ -137,6 +137,10 @@
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
     z-index: 2;
+  }
+
+  .sidenav-background {
+    background-color: #41b883;
   }
 
 </style>
