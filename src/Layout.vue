@@ -4,15 +4,37 @@
 
       <vl-side-layout>
         <vl-sidenav class="sidenav-background" v-model="isOpen" :toggle-width="960">
-            <!-- <vl-toolbar-sub > -->
-            <header class="nav-header">
-              <a href="#" class="nav-log">
-                <img src="./assets/logo.png">
-                <h2 style="color: white"> Vue Admin </h2>
-              </a>
-            </header>
-            <!-- </vl-toolbar-sub> dd-->
+          <header class="nav-header">
+            <a href="#" class="nav-log">
+              <img src="./assets/logo.png">
+              <h2 style="color: white"> Vue Admin </h2>
+            </a>
+          </header>
+
+          <div class="vl-sidenav-content">
+            <vl-collapse title="Group1">
+              <ul class="menu-list menu-toggle-list" style="height: 100%">
+                <li v-for="(item, index) in navRouter" :key="index">
+                  <a href="#">
+                    {{ item.title }}
+                  </a>
+                </li>
+              </ul>
+            </vl-collapse>
+
+            <vl-collapse title="Group1">
+              <ul class="menu-list menu-toggle-list" style="height: 100%">
+                <li v-for="(item, index) in navRouter" :key="index">
+                  <a href="#">
+                    {{ item.title }}
+                  </a>
+                </li>
+              </ul>
+            </vl-collapse>
+          </div>
+
         </vl-sidenav>
+
       </vl-side-layout>
 
       <vl-content-layout>
@@ -47,11 +69,14 @@
 </template>
 
 <script>
+  // components
   import VlToolbar from './components/VlToolbar/VlToolbar.vue'
   import VlToolbarSub from './components/VlToolbar/VlToolbarSub.vue'
   import VlSidenav from './components/VlSidenav/VlSidenav.vue'
   import VlShadow from './components/VlShadow/VlShadow.vue'
+  import VlCollapse from './components/VlCollapse/VlCollapse.vue'
 
+  // layout components
   import VlLayout from './components/VlLayout/VlLayout.vue'
   import VlSideLayout from './components/VlLayout/VlSideLayout.vue'
   import VlContentLayout from './components/VlLayout/VlContentLayout'
@@ -65,12 +90,33 @@
       VlShadow,
       VlSideLayout,
       VlLayout,
-      VlContentLayout
+      VlContentLayout,
+      VlCollapse
     },
     data () {
       return {
         title: 'Toolbar',
-        isOpen: true
+        isOpen: true,
+        navRouter: [
+          {
+            title: '1'
+          },
+          {
+            title: '2'
+          },
+          {
+            title: '3'
+          },
+          {
+            title: '4'
+          },
+          {
+            title: '5'
+          },
+          {
+            title: '6'
+          }
+        ]
       }
     },
     methods: {}
@@ -84,6 +130,13 @@
 
   .vl-content {
     padding: 16px;
+  }
+
+  .vl-sidenav-content {
+    display: block;
+    position: relative;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   html, body {
@@ -141,6 +194,36 @@
 
   .sidenav-background {
     background-color: #41b883;
+  }
+
+  .menu-toggle-list a {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    display: block;
+    padding: 0 16px 0 32px;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+    border-radius: 0;
+    color: white;
+    cursor: pointer;
+    display: block;
+    -webkit-box-align: inherit;
+    -webkit-align-items: inherit;
+    align-items: inherit;
+    line-height: 40px;
+    margin: 0;
+    max-height: 40px;
+    overflow: hidden;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%;
+  }
+
+  .menu-toggle-list a:hover {
+    background-color: rgba(230, 230, 230, 0.2);
   }
 
 </style>

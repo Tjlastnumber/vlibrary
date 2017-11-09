@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import VlMask from './components/VlMask/index.js'
-import './assets/css/bootstrap.css'
+import VlMask from '@/components/VlMask/index.js'
+import '@/assets/css/bootstrap.css'
 
 Vue.use(VlMask, {})
 Vue.config.productionTip = false
