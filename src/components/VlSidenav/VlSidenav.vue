@@ -1,5 +1,5 @@
 <template>
-  <vl-shadow dp="3" class="vl-sidenav" :class="dynamicClass" v-if="isOpen">
+  <vl-shadow dp="3" class="vl-sidenav" :class="dynamicClass" v-show="isOpen">
     <slot></slot>
   </vl-shadow>
 </template>
@@ -112,6 +112,12 @@
     position: absolute;
   }
 
+  .vl-sidenav ul {
+    list-style: none;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
   /* @media (max-width: 960px) {
     .vl-sidenav {
       position: absolute;
