@@ -8,7 +8,7 @@
             <header class="nav-header">
               <a href="#" class="nav-log">
                 <img src="./assets/logo.png">
-                <h2 style="color: white"> Sidenav </h2>
+                <h2 style="color: white"> Vue Admin </h2>
               </a>
             </header>
             <!-- </vl-toolbar-sub> dd-->
@@ -130,10 +130,10 @@
   }
 
   .nav-header {
-    background-color: #106CC8;
-    background: -webkit-linear-gradient(#185694, #106cc8);
-    background: linear-gradient(#185694, #106cc8);
-    border-bottom: 1px solid #267ED5;
+    background-color: #41b883;
+    background: -webkit-linear-gradient(#36495d, #41b883);
+    background: linear-gradient(#36495d, #41b883);
+    border-bottom: 1px solid #41b883;
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
     z-index: 2;
