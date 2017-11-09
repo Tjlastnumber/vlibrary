@@ -1,0 +1,121 @@
+<template>
+  <vl-shadow dp="3" class="vl-sidenav" :class="dynamicClass" v-if="isOpen">
+    <slot></slot>
+  </vl-shadow>
+</template>
+
+<script>
+  import VlShadow from '../VlShadow/VlShadow.vue'
+  export default {
+    name: 'VlSidenav',
+    components: { VlShadow },
+    props: {
+      isOpen: { type: Boolean, default: false },
+      toggleWidth: { type: Number, default: 0 },
+      dock: { type: String, default: 'left' }
+    },
+    model: {
+      prop: 'isOpen',
+      event: 'onOpenChanged'
+    },
+    data () {
+      return {
+        mask: {},
+        dynamicClass: {
+          'sidenav-static': false,
+          'sidenav-absolute': false,
+          'sidenav-left': false,
+          'sidenav-right': false
+        }
+      }
+    },
+    mounted () {
+      this.mask = this.$vlMask
+      this.mask.$on('clicked', () => { this.onOpenChanged(false) })
+      this.setDynamicClass()
+      this.onOpenChanged(this.compareWidth())
+      window.addEventListener('resize', this.onOpenChanging, false)
+    },
+    destroyed () {
+      window.removeEventListener('resize', this.onOpenChanging, false)
+    },
+    methods: {
+      onOpenChanging () {
+        this.onOpenChanged(this.compareWidth())
+        this.setDynamicClass()
+      },
+      onOpenChanged (val) {
+        this.$emit('onOpenChanged', val)
+      },
+      compareWidth () {
+        return this.toggleWidth <= document.body.clientWidth
+      },
+      setDynamicClass () {
+        this.dynamicClass['sidenav-static'] = this.compareWidth()
+        this.dynamicClass['sidenav-absolute'] = !this.compareWidth()
+        this.dynamicClass['sidenav-left'] = this.dock === 'left'
+        this.dynamicClass['sidenav-right'] = this.dock === 'right'
+      }
+    },
+    watch: {
+      isOpen (val) {
+        val && !this.compareWidth()
+        ? this.mask.show()
+        : this.mask.close()
+      }
+    }
+  }
+</script>
+
+<style>
+  .vl-sidenav {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    bottom: 0px;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    line-height: 22.4px;
+    max-width: 272px;
+    min-width: 272px;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: static;
+    top: 0px;
+    width: 100%;
+    z-index: 1999;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  }
+
+  .sidenav-left {
+    left: 0;
+  }
+
+  .sidenav-right {
+    right: 0;
+  }
+
+  .sidenav-static {
+    position: static;
+  }
+
+  .sidenav-absolute {
+    position: absolute;
+  }
+
+  /* @media (max-width: 960px) {
+    .vl-sidenav {
+      position: absolute;
+    }
+  } */
+
+</style>
