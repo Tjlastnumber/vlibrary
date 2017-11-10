@@ -4,7 +4,8 @@
 
       <vl-side-layout>
         <vl-sidenav class="sidenav-background" v-model="isOpen" :toggle-width="960">
-          <header class="nav-header">
+
+          <header class="sidenav-header">
             <a href="#" class="nav-log">
               <img src="./assets/logo.png">
               <h2 style="color: white"> Vue Admin </h2>
@@ -12,8 +13,8 @@
           </header>
 
           <div class="vl-sidenav-content">
-            <vl-collapse title="Group1">
-              <ul class="menu-list menu-toggle-list" style="height: 100%">
+            <vl-collapse title="Group1" style="color: white">
+              <ul class="menu-list menu-toggle-list">
                 <li v-for="(item, index) in navRouter" :key="index">
                   <a href="#">
                     {{ item.title }}
@@ -22,8 +23,8 @@
               </ul>
             </vl-collapse>
 
-            <vl-collapse title="Group1">
-              <ul class="menu-list menu-toggle-list" style="height: 100%">
+            <vl-collapse title="Group1" style="color: white">
+              <ul class="menu-list menu-toggle-list">
                 <li v-for="(item, index) in navRouter" :key="index">
                   <a href="#">
                     {{ item.title }}
@@ -54,6 +55,15 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-12">
+                <vl-collapse title="Group1">
+                  <ul>
+                    <li v-for="(item, index) in navRouter" :key="index">
+                      <a href="#">
+                        {{ item.title }}
+                      </a>
+                    </li>
+                  </ul>
+                </vl-collapse>
 
                 <!-- main content -->
                 <slot></slot>
@@ -182,7 +192,7 @@
     transform: scale(1.2);
   }
 
-  .nav-header {
+  .sidenav-header {
     background-color: #41b883;
     background: -webkit-linear-gradient(#36495d, #41b883);
     background: linear-gradient(#36495d, #41b883);
@@ -204,7 +214,6 @@
     padding: 0 16px 0 32px;
     text-transform: none;
     text-rendering: optimizeLegibility;
-    font-weight: 500;
     border-radius: 0;
     color: white;
     cursor: pointer;
@@ -220,6 +229,9 @@
     text-decoration: none;
     white-space: normal;
     width: 100%;
+    font-weight: 500;
+    /* font-size: 14px; */
+    font-style: inherit;
   }
 
   .menu-toggle-list a:hover {

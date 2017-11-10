@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vl-collapse-header" @click="priIsOpen = !priIsOpen">
-      <span class="vl-collapse-title"> {{title}} </span>
+      <span> {{title}} </span>
       <span class="flex"></span>
       <span class="vl-collapse-icon" :class="priIsOpen ? 'glyphicon glyphicon-menu-down' : 'glyphicon glyphicon-menu-right'"></span>
     </div>
@@ -45,7 +45,6 @@ export default {
   .vl-collapse-header {
     cursor: pointer;
     border-radius: 0;
-    color: white;
     /* cursor: pointer; */
     display: flex;
     -webkit-box-align: inherit;
