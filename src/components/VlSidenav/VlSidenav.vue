@@ -12,7 +12,8 @@
     props: {
       isOpen: { type: Boolean, default: false },
       toggleWidth: { type: Number, default: 0 },
-      dock: { type: String, default: 'left' }
+      dock: { type: String, default: 'left' },
+      absolute: { type: Boolean, default: false }
     },
     model: {
       prop: 'isOpen',
@@ -32,9 +33,10 @@
     mounted () {
       this.mask = this.$vlMask
       this.mask.$on('clicked', () => { this.onOpenChanged(false) })
-      this.setDynamicClass()
-      this.onOpenChanged(this.compareWidth())
+      this.dynamicClass['sidenav-left'] = this.dock === 'left'
+      this.dynamicClass['sidenav-right'] = !this.dynamicClass['sidenav-left']
       window.addEventListener('resize', this.onOpenChanging, false)
+      this.onOpenChanging()
     },
     destroyed () {
       window.removeEventListener('resize', this.onOpenChanging, false)
@@ -42,7 +44,8 @@
     methods: {
       onOpenChanging () {
         this.onOpenChanged(this.compareWidth())
-        this.setDynamicClass()
+        this.setDynamicClass(this.compareWidth())
+        this.setMask(this.compareWidth())
       },
       onOpenChanged (val) {
         this.$emit('onOpenChanged', val)
@@ -50,18 +53,21 @@
       compareWidth () {
         return this.toggleWidth <= document.body.clientWidth
       },
-      setDynamicClass () {
-        this.dynamicClass['sidenav-static'] = this.compareWidth()
-        this.dynamicClass['sidenav-absolute'] = !this.compareWidth()
-        this.dynamicClass['sidenav-left'] = this.dock === 'left'
-        this.dynamicClass['sidenav-right'] = this.dock === 'right'
+      setDynamicClass (val) {
+        this.dynamicClass['sidenav-static'] = val
+        this.dynamicClass['sidenav-absolute'] = !this.dynamicClass['sidenav-static']
+      },
+      setMask (val) {
+        val && !this.compareWidth() ? this.mask.show() : this.mask.close()
       }
     },
     watch: {
       isOpen (val) {
-        val && !this.compareWidth()
-        ? this.mask.show()
-        : this.mask.close()
+        this.setMask(val && !this.compareWidth())
+      },
+      absolute (val) {
+        this.dynamicClass['sidenav-absolute'] = val
+        this.dynamicClass['sidenav-static'] = !this.dynamicClass['sidenav-absolute']
       }
     }
   }

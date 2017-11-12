@@ -3,7 +3,7 @@
     <vl-layout>
 
       <vl-side-layout>
-        <vl-sidenav class="sidenav-background" v-model="isOpen" :toggle-width="960">
+        <vl-sidenav class="sidenav-background" v-model="isOpenSidenav" :toggle-width="960">
 
           <header class="sidenav-header">
             <a href="#" class="nav-log">
@@ -41,13 +41,18 @@
       <vl-content-layout>
         <vl-toolbar>
           <vl-shadow dp="1">
-            <vl-toolbar-sub v-show="!isOpen">
-              <button @click="isOpen = !isOpen">
+            <vl-toolbar-sub v-show="!isOpenSidenav">
+              <button @click="isOpenSidenav = !isOpenSidenav">
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
               </button>
             </vl-toolbar-sub>
             <vl-toolbar-sub>
               <h3> {{ title }} </h3>
+            </vl-toolbar-sub>
+            <vl-toolbar-sub>
+              <button @click="isOpenSetting = !isOpenSetting">
+                <span class="glyphicon glyphicon-cog"></span>
+              </button>
             </vl-toolbar-sub>
           </vl-shadow>
         </vl-toolbar>
@@ -74,6 +79,15 @@
         </div>
       </vl-content-layout>
 
+      <vl-side-layout>
+        <vl-sidenav :is-open="isOpenSetting" :dock="'right'" :absolute="true">
+          <vl-toolbar class="sidenav-background">
+            <vl-toolbar-sub>
+              <h3> Setting </h3>
+            </vl-toolbar-sub>
+          </vl-toolbar>
+        </vl-sidenav>
+      </vl-side-layout>
     </vl-layout>
   </div>
 </template>
@@ -106,7 +120,8 @@
     data () {
       return {
         title: 'Toolbar',
-        isOpen: true,
+        isOpenSidenav: true,
+        isOpenSetting: false,
         navRouter: [
           {
             title: '1'

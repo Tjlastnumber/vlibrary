@@ -25,6 +25,7 @@ export default {
     font-size: 20px;
     min-height: 64px;
     width: 100%;
+    background-color: white;
     /* padding: 0 16px 0; */
   }
 </style>
