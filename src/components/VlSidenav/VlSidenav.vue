@@ -4,6 +4,8 @@
   </vl-shadow>
 </template>
 
+<style src="./VlSidenav.css"></style>
+
 <script>
   import VlShadow from '../VlShadow/VlShadow.vue'
   export default {
@@ -69,62 +71,3 @@
     }
   }
 </script>
-
-<style>
-  .vl-sidenav {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-origin: padding-box;
-    background-position-x: 0%;
-    background-position-y: 0%;
-    background-size: auto;
-    bottom: 0px;
-    box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.87);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    line-height: 22.4px;
-    max-width: 272px;
-    min-width: 272px;
-    overflow-x: auto;
-    overflow-y: auto;
-    position: static;
-    top: 0px;
-    width: 100%;
-    z-index: 1999;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: vertical;
-    -webkit-font-smoothing: antialiased;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
-  }
-
-  .sidenav-left {
-    left: 0;
-  }
-
-  .sidenav-right {
-    right: 0;
-  }
-
-  .sidenav-static {
-    position: static;
-  }
-
-  .sidenav-absolute {
-    position: absolute;
-  }
-
-  .vl-sidenav ul {
-    list-style: none;
-    padding: 0;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  /* @media (max-width: 960px) {
-    .vl-sidenav {
-      position: absolute;
-    }
-  } */
-
-</style>
