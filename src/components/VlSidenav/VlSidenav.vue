@@ -36,8 +36,8 @@
       this.mask.$on('clicked', () => { this.onOpenChanged(false) })
       this.dynamicClass['sidenav-left'] = this.dock === 'left'
       this.dynamicClass['sidenav-right'] = !this.dynamicClass['sidenav-left']
-      window.addEventListener('resize', this.onOpenChanging, false)
       this.onOpenChanging()
+      window.addEventListener('resize', this.onOpenChanging, false)
     },
     destroyed () {
       window.removeEventListener('resize', this.onOpenChanging, false)
