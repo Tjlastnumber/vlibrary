@@ -79,13 +79,16 @@
         </div>
       </vl-content-layout>
 
+      <!-- Setting -->
       <vl-side-layout>
-        <vl-sidenav :is-open="isOpenSetting" :dock="'right'" :absolute="true">
-          <vl-toolbar class="sidenav-background">
-            <vl-toolbar-sub>
-              <h3> Setting </h3>
-            </vl-toolbar-sub>
-          </vl-toolbar>
+        <vl-sidenav class="setting" :dp="4" :is-open="isOpenSetting" :dock="'right'" :absolute="true">
+          <vl-shadow dp="1">
+            <vl-toolbar  class="sidenav-background">
+              <vl-toolbar-sub>
+                <h3> Setting </h3>
+              </vl-toolbar-sub>
+            </vl-toolbar>
+          </vl-shadow>
         </vl-sidenav>
       </vl-side-layout>
     </vl-layout>
@@ -219,6 +222,10 @@
 
   .sidenav-background {
     background-color: #41b883;
+  }
+
+  .setting {
+    background-color: white;
   }
 
   .menu-toggle-list a {

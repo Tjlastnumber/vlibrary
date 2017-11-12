@@ -1,5 +1,5 @@
 <template>
-  <vl-shadow dp="3" class="vl-sidenav" :class="dynamicClass" v-show="isOpen">
+  <vl-shadow :dp="dp" class="vl-sidenav" :class="dynamicClass" v-show="isOpen">
     <slot></slot>
   </vl-shadow>
 </template>
@@ -10,6 +10,7 @@
     name: 'VlSidenav',
     components: { VlShadow },
     props: {
+      dp: { type: Number, default: 3 },
       isOpen: { type: Boolean, default: false },
       toggleWidth: { type: Number, default: 0 },
       dock: { type: String, default: 'left' },
@@ -44,8 +45,8 @@
     methods: {
       onOpenChanging () {
         this.onOpenChanged(this.compareWidth())
-        this.setDynamicClass(this.compareWidth())
-        this.setMask(this.compareWidth())
+        this.setDynamicClass(!this.compareWidth() || this.absolute)
+        this.setMask(false)
       },
       onOpenChanged (val) {
         this.$emit('onOpenChanged', val)
@@ -54,20 +55,16 @@
         return this.toggleWidth <= document.body.clientWidth
       },
       setDynamicClass (val) {
-        this.dynamicClass['sidenav-static'] = val
-        this.dynamicClass['sidenav-absolute'] = !this.dynamicClass['sidenav-static']
+        this.dynamicClass['sidenav-absolute'] = val
+        this.dynamicClass['sidenav-static'] = !this.dynamicClass['sidenav-absolute']
       },
       setMask (val) {
-        val && !this.compareWidth() ? this.mask.show() : this.mask.close()
+        val ? this.mask.show() : this.mask.close()
       }
     },
     watch: {
       isOpen (val) {
         this.setMask(val && !this.compareWidth())
-      },
-      absolute (val) {
-        this.dynamicClass['sidenav-absolute'] = val
-        this.dynamicClass['sidenav-static'] = !this.dynamicClass['sidenav-absolute']
       }
     }
   }
