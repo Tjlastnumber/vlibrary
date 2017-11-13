@@ -10,7 +10,7 @@
 export default {
   name: 'VlShadow',
   props: {
-    dp: String
+    dp: Number
   }
 }
 </script>
