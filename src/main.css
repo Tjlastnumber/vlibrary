@@ -1,0 +1,114 @@
+  .sidenav-content {
+    padding: 16px;
+  }
+
+  .vl-content {
+    padding: 16px;
+  }
+
+  .vl-sidenav-content {
+    display: block;
+    position: relative;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0px;
+    max-height: 100%;
+    max-width: 100%;
+    min-height: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0px;
+    position: relative;
+    width: 100%;
+    background-color: rgba(250, 250, 250, 1);
+  }
+
+  a.nav-log {
+    text-decoration: none;
+  }
+
+  .nav-log {
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 0 0 16px;
+    margin: 0 auto;
+  }
+
+  .nav-log > img {
+    height: 150px;
+    width: auto;
+    display: block;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  .sidenav-header {
+    background-color: #41b883;
+    background: -webkit-linear-gradient(#36495d, #41b883);
+    background: linear-gradient(#36495d, #41b883);
+    border-bottom: 1px solid #41b883;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .sidenav-background {
+    background-color: #41b883;
+  }
+
+  .setting {
+    background-color: white;
+  }
+
+  .menu-toggle-list a {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    display: block;
+    padding: 0 16px 0 32px;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    border-radius: 0;
+    color: white;
+    cursor: pointer;
+    display: block;
+    -webkit-box-align: inherit;
+    -webkit-align-items: inherit;
+    align-items: inherit;
+    line-height: 40px;
+    margin: 0;
+    max-height: 40px;
+    overflow: hidden;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%;
+    font-weight: 500;
+    /* font-size: 14px; */
+    font-style: inherit;
+  }
+
+  .menu-toggle-list a:hover {
+    background-color: rgba(230, 230, 230, 0.2);
+  }
+
+  .flex {
+    flex: 1;
+    -webkit-box-flex: 1;
+    min-width: 0;
+  }
