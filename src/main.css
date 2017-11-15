@@ -69,16 +69,28 @@
 
   .sidenav-background {
     background-color: #41b883;
+    min-width: 272px;
+    max-width: 272px;
   }
 
   .setting {
     background-color: white;
+    min-width: 272px;
+    max-width: 272px;
+  }
+
+  .menu-collapse {
+    border-top: 1px solid rgba(230, 230, 230, 0.2);
+    border-bottom: 1px solid rgba(230, 230, 230, 0.2);
+  }
+
+  .menu-list {
+    margin: 0;
   }
 
   .menu-toggle-list a {
     overflow: hidden;
     position: relative;
-    z-index: 1;
     display: block;
     padding: 0 16px 0 32px;
     text-transform: none;
@@ -91,7 +103,6 @@
     -webkit-align-items: inherit;
     align-items: inherit;
     line-height: 40px;
-    margin: 0;
     max-height: 40px;
     overflow: hidden;
     text-align: left;
@@ -99,11 +110,14 @@
     white-space: normal;
     width: 100%;
     font-weight: 500;
-    /* font-size: 14px; */
     font-style: inherit;
   }
 
   .menu-toggle-list a:hover {
+    background-color: rgba(230, 230, 230, 0.2);
+  }
+
+  .active {
     background-color: rgba(230, 230, 230, 0.2);
   }
 

@@ -12,8 +12,6 @@
   flex-direction: column;
   height: 100%;
   line-height: 22.4px;
-  max-width: 272px;
-  min-width: 272px;
   overflow-x: auto;
   overflow-y: auto;
   position: static;

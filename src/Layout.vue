@@ -13,12 +13,16 @@
           </header>
 
           <div class="vl-sidenav-content">
-            <vl-collapse title="Group1" style="color: white">
+            <vl-collapse title="Pages"
+                         style="color: white"
+                         class="menu-collapse"
+                         :is-open="true">
               <ul class="menu-list menu-toggle-list">
                 <li>
                   <router-link v-for="(route,index) in $router.options.routes"
-                               :key="index"
-                               :to="route.path">
+                              :class="{active : route.path === $route.path}"
+                              :key="index"
+                              :to="route.path">
                     {{ route.name }}
                   </router-link>
                 </li>
