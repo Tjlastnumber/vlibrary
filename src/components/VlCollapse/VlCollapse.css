@@ -1,7 +1,6 @@
   .vl-collapse-header {
     cursor: pointer;
     border-radius: 0;
-    /* cursor: pointer; */
     display: flex;
     -webkit-box-align: inherit;
     -webkit-align-items: inherit;
@@ -14,6 +13,7 @@
     text-align: left;
     text-decoration: none;
     white-space: normal;
+    z-index: 1;
     width: 100%;
   }
 
