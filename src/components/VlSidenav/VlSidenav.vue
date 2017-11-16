@@ -1,11 +1,7 @@
 <template>
-  <transition @beforeEnter="beforeEnter"
-              @enter="enter"
-              @leave="leave">
-    <vl-shadow ref="content" :dp="dp" class="vl-sidenav" :class="dynamicClass">
-      <slot></slot>
-    </vl-shadow>
-  </transition>
+  <vl-shadow class="vl-sidenav" ref="content" :dp="dp" :style="styleObject" :class="dynamicClass">
+    <slot></slot>
+  </vl-shadow>
 </template>
 
 <style src="./VlSidenav.css"></style>
@@ -22,7 +18,17 @@
       isOpen: { type: Boolean, default: false },
       toggleWidth: { type: Number, default: 0 },
       dock: { type: String, default: 'left' },
-      absolute: { type: Boolean, default: false }
+      absolute: { type: Boolean, default: false },
+      width: { type: Number, default: 400 }
+    },
+    computed: {
+      styleObject () {
+        return {
+          width: this.width + 'px',
+          minWidth: this.width + 'px',
+          maxWidth: this.width + 'px'
+        }
+      }
     },
     model: {
       prop: 'isOpen',
@@ -31,6 +37,7 @@
     data () {
       return {
         mask: {},
+        contentEl: {},
         dynamicClass: {
           'sidenav-static': false,
           'sidenav-absolute': false,
@@ -40,11 +47,14 @@
       }
     },
     mounted () {
+      this.contentEl = this.$refs['content'].$el
       this.mask = this.$vlMask
       this.mask.$on('clicked', () => { this.onOpenChanged(false) })
       this.dynamicClass['sidenav-left'] = this.dock === 'left'
       this.dynamicClass['sidenav-right'] = !this.dynamicClass['sidenav-left']
       this.onOpenChanging()
+      this.$refs['content'].$el.style.width = this.$refs['content'].$el.style['min-width'] = 0
+      this.playAnimate(this.isOpen)
       window.addEventListener('resize', this.onOpenChanging, false)
     },
     destroyed () {
@@ -60,7 +70,7 @@
         this.$emit('onOpenChanged', val)
       },
       compareWidth () {
-        return this.toggleWidth <= document.body.clientWidth
+        return this.toggleWidth !== 0 ? this.toggleWidth <= document.body.clientWidth : this.isOpen
       },
       setDynamicClass (val) {
         this.dynamicClass['sidenav-absolute'] = val
@@ -69,24 +79,25 @@
       setMask (val) {
         val ? this.mask.show() : this.mask.close()
       },
-      beforeEnter (el) {
-
-      },
       enter (el, done) {
-        let translate = { 'min-width': '272px', translateX: 0 }
-        // { translateX: 0 }
-        Velocity(el, translate, { duration: 200 })
+        let translate = { 'min-width': this.width + 'px', width: this.width + 'px' }
+        Velocity(el, translate, { duration: 300 })
       },
       leave (el, done) {
-        let translate = { 'min-width': 0, width: 0, translateX: -272 }
-        Velocity(el, translate, { duration: 200 })
+        let translate = { 'min-width': 0, width: 0 }
+        Velocity(el, translate, { duration: 300 })
+      },
+      playAnimate (val) {
+        val ? this.enter(this.contentEl) : this.leave(this.contentEl)
+      },
+      visiblity (val) {
+        this.contentEl.style.display = val ? '' : 'none'
       }
     },
     watch: {
       isOpen (val) {
         this.setMask(val && !this.compareWidth())
-        let el = this.$refs['content'].$el
-        val ? this.enter(el) : this.leave(el)
+        this.playAnimate(val)
       }
     }
   }

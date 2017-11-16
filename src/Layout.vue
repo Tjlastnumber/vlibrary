@@ -3,7 +3,7 @@
     <vl-layout>
 
       <vl-side-layout>
-        <vl-sidenav class="sidenav-background" v-model="isOpenSidenav" :toggle-width="960">
+        <vl-sidenav class="sidenav-background" :width="272" v-model="isOpenSidenav" :toggle-width="960">
 
           <header class="sidenav-header">
             <a href="#" class="nav-log">
@@ -70,7 +70,7 @@
 
       <!-- Setting -->
       <vl-side-layout>
-        <vl-sidenav class="setting" :dp="5" :is-open="isOpenSetting" :dock="'right'" :absolute="true">
+        <vl-sidenav class="setting" :dp="5" :width="272" v-model="isOpenSetting" :dock="'right'" :absolute="true">
           <vl-shadow :dp="1">
             <vl-toolbar>
               <vl-toolbar-sub>
@@ -123,13 +123,7 @@
       }
     },
     mounted () {
-      console.info(this.$router.options.routes)
     },
-    // watch: {
-    //   '$route' () {
-    //     this.title = this.$route.name
-    //   }
-    // },
     methods: {}
   }
 </script>
