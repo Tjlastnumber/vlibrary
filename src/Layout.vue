@@ -44,7 +44,9 @@
               </button>
             </vl-toolbar-sub>
             <vl-toolbar-sub>
-              <h3> {{ $route.name }} </h3>
+              <vl-breadcrumb :path="$route.name">
+                <h3> {{ $route.name }} </h3>
+              </vl-breadcrumb>
             </vl-toolbar-sub>
             <span class="flex"></span>
             <vl-toolbar-sub style="margin-right: 8px">
@@ -98,6 +100,7 @@
   import VlSidenav from './components/VlSidenav/VlSidenav.vue'
   import VlShadow from './components/VlShadow/VlShadow.vue'
   import VlCollapse from './components/VlCollapse/VlCollapse.vue'
+  import VlBreadcrumb from './components/VlBreadcrumb/VlBreadcrumb.vue'
 
   // layout components
   import VlLayout from './components/VlLayout/VlLayout.vue'
@@ -114,7 +117,8 @@
       VlSideLayout,
       VlLayout,
       VlContentLayout,
-      VlCollapse
+      VlCollapse,
+      VlBreadcrumb
     },
     data () {
       return {

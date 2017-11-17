@@ -80,11 +80,19 @@
         val ? this.mask.show() : this.mask.close()
       },
       enter (el, done) {
-        let translate = { 'min-width': this.width + 'px', width: this.width + 'px' }
+        let translate = {
+          'min-width': this.width + 'px',
+          width: this.width + 'px',
+          translateX: 0
+        }
         Velocity(el, translate, { duration: 300 })
       },
       leave (el, done) {
-        let translate = { 'min-width': 0, width: 0 }
+        let translate = {
+          'min-width': 0,
+          width: 0,
+          translateX: this.dock === 'left' ? -this.width : this.width
+        }
         Velocity(el, translate, { duration: 300 })
       },
       playAnimate (val) {
