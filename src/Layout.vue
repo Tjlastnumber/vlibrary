@@ -8,7 +8,7 @@
           <header class="sidenav-header">
             <a href="#" class="nav-log">
               <img src="./assets/logo.png">
-              <h2 style="color: white"> Vue Admin </h2>
+              <h2 style="color: white" v-tooltip> Vue Admin </h2>
             </a>
           </header>
 
