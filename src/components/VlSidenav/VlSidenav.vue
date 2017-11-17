@@ -52,8 +52,8 @@
       this.mask.$on('clicked', () => { this.onOpenChanged(false) })
       this.dynamicClass['sidenav-left'] = this.dock === 'left'
       this.dynamicClass['sidenav-right'] = !this.dynamicClass['sidenav-left']
+      this.contentEl.style.width = this.contentEl.style['min-width'] = 0
       this.onOpenChanging()
-      this.$refs['content'].$el.style.width = this.$refs['content'].$el.style['min-width'] = 0
       this.playAnimate(this.isOpen)
       window.addEventListener('resize', this.onOpenChanging, false)
     },
