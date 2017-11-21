@@ -1,7 +1,7 @@
 <template>
   <div class="vl-content">
     <div style="display: block; flex: 1; box-sizing: border-box">
-      <div style="padding: 8px">
+      <div style="padding: 32px">
         <slot></slot>
       </div>
     </div>
