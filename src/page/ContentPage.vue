@@ -1,10 +1,12 @@
 <template>
-  <vl-card class="vl-content-height">
-    <vl-card-header>
-      <h3>Content</h3>
-    </vl-card-header>
+  <vl-card>
     <vl-card-content>
-      <vl-content>
+      <vl-toolbar style="background-color: #41b883">
+        <vl-toolbar-sub>
+          <h3 style="color: white">Content</h3>
+        </vl-toolbar-sub>
+      </vl-toolbar>
+      <vl-content class="vl-content-height">
         <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at, in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>
 
         <p>
@@ -57,9 +59,11 @@ import VlCard from '../components/VlCard/VlCard'
 import VlCardHeader from '@/components/VlCard/VlCardHeader'
 import VlCardContent from '@/components/VlCard/VlCardContent'
 import VlContent from '@/components/VlContent/VlContent'
+import VlToolbar from '@/components/VlToolbar/VlToolbar'
+import VlToolbarSub from '@/components/VlToolbar/VlToolbarSub'
 export default {
   name: 'ContentPage',
-  components: {VlCard, VlCardHeader, VlCardContent, VlContent}
+  components: {VlCard, VlCardHeader, VlCardContent, VlContent, VlToolbar, VlToolbarSub}
 }
 </script>
 

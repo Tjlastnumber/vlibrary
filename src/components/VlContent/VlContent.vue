@@ -11,7 +11,10 @@
 <style src="./VlContent.css"></style>
 <script>
 export default {
-  name: 'VlContent'
+  name: 'VlContent',
+  data () {
+
+  }
 }
 </script>
 
