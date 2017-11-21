@@ -12,8 +12,7 @@
   flex-direction: column;
   height: 100%;
   line-height: 22.4px;
-  overflow-x: auto;
-  overflow-y: auto;
+  overflow: auto;
   position: static;
   top: 0px;
   z-index: 1999;

@@ -1,0 +1,10 @@
+  .vl-content {
+    display: flex;
+    flex: 1;
+    position: relative;
+    box-sizing: border-box;
+    overflow: auto;
+    min-height: auto;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+  }

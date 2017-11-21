@@ -11,6 +11,7 @@ import '@/assets/css/bootstrap.css'
 Vue.use(VlMask, {})
 Vue.use(VlTooltip, {})
 console.info(Vue.$vlTooltip)
+console.info(Vue.$vlMask)
 vlTooltip(Vue)
 Vue.config.productionTip = false
 

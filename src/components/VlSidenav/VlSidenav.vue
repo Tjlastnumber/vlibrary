@@ -49,6 +49,8 @@
     mounted () {
       this.contentEl = this.$refs['content'].$el
       this.mask = this.$vlMask
+      this.tooltip = this.$vlTooltip
+      console.info(this.tooltip)
       this.mask.$on('clicked', () => { this.onOpenChanged(false) })
       this.dynamicClass['sidenav-left'] = this.dock === 'left'
       this.dynamicClass['sidenav-right'] = !this.dynamicClass['sidenav-left']

@@ -37,18 +37,17 @@
       <vl-content-layout>
 
         <vl-toolbar>
-          <vl-shadow :dp="1">
+          <vl-shadow :dp="1" style="background-color: white">
             <vl-toolbar-sub v-show="!isOpenSidenav">
               <button @click="isOpenSidenav = !isOpenSidenav">
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
               </button>
             </vl-toolbar-sub>
-            <vl-toolbar-sub>
+            <vl-toolbar-sub class="flex">
               <vl-breadcrumb :path="$route.name">
                 <h3> {{ $route.name }} </h3>
               </vl-breadcrumb>
             </vl-toolbar-sub>
-            <span class="flex"></span>
             <vl-toolbar-sub style="margin-right: 8px">
               <button @click="isOpenSetting = !isOpenSetting">
                 <span class="glyphicon glyphicon-cog"></span>
@@ -57,17 +56,9 @@
           </vl-shadow>
         </vl-toolbar>
 
-        <div class="vl-content">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-12">
-                <!-- main content -->
-                <slot></slot>
-
-              </div>
-            </div>
-          </div>
-        </div>
+        <vl-content>
+          <slot></slot>
+        </vl-content>
       </vl-content-layout>
 
       <!-- Setting -->
@@ -100,6 +91,7 @@
   import VlSidenav from './components/VlSidenav/VlSidenav.vue'
   import VlShadow from './components/VlShadow/VlShadow.vue'
   import VlCollapse from './components/VlCollapse/VlCollapse.vue'
+  import VlContent from './components/VlContent/VlContent.vue'
   import VlBreadcrumb from './components/VlBreadcrumb/VlBreadcrumb.vue'
 
   // layout components
@@ -118,6 +110,7 @@
       VlLayout,
       VlContentLayout,
       VlCollapse,
+      VlContent,
       VlBreadcrumb
     },
     data () {
