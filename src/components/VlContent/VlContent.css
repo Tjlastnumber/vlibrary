@@ -8,3 +8,13 @@
     flex-direction: column;
     -webkit-overflow-scrolling: touch;
   }
+
+  .vl-content-box {
+    display: block;
+    flex: 1;
+    box-sizing: border-box
+  }
+
+  .vl-content-padding {
+    padding: 32px;
+  }

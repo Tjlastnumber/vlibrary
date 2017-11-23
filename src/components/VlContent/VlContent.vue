@@ -1,7 +1,7 @@
 <template>
   <div class="vl-content">
-    <div style="display: block; flex: 1; box-sizing: border-box">
-      <div style="padding: 32px">
+    <div class="vl-content-box">
+      <div class="vl-content-padding">
         <slot></slot>
       </div>
     </div>
@@ -13,7 +13,7 @@
 export default {
   name: 'VlContent',
   data () {
-
+    return {}
   }
 }
 </script>

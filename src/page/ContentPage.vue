@@ -1,11 +1,13 @@
 <template>
   <vl-card>
     <vl-card-content>
-      <vl-toolbar style="background-color: #41b883">
-        <vl-toolbar-sub>
-          <h3 style="color: white">Content</h3>
-        </vl-toolbar-sub>
-      </vl-toolbar>
+        <vl-toolbar class="vl-content-title">
+          <vl-shadow :dp="1">
+            <vl-toolbar-sub>
+                <h3 style="color: white">Content</h3>
+            </vl-toolbar-sub>
+          </vl-shadow>
+        </vl-toolbar>
       <vl-content class="vl-content-height">
         <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at, in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>
 
@@ -61,15 +63,20 @@ import VlCardContent from '@/components/VlCard/VlCardContent'
 import VlContent from '@/components/VlContent/VlContent'
 import VlToolbar from '@/components/VlToolbar/VlToolbar'
 import VlToolbarSub from '@/components/VlToolbar/VlToolbarSub'
+import VlShadow from '@/components/VlShadow/VlShadow'
 export default {
   name: 'ContentPage',
-  components: {VlCard, VlCardHeader, VlCardContent, VlContent, VlToolbar, VlToolbarSub}
+  components: {VlCard, VlCardHeader, VlCardContent, VlContent, VlToolbar, VlToolbarSub, VlShadow}
 }
 </script>
 
 <style>
 .vl-content-height {
   height: 450px;
+}
+.vl-content-title {
+  background-color: #41b883;
+  border-radius: 2px 2px 0 0;
 }
 </style>
 

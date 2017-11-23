@@ -17,13 +17,13 @@ export default {
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .fade-enter
 {
   opacity: 0;
-  transform: translateY(100px);
+  transform: translateY(50px);
 }
 
 .fade-leave-to {

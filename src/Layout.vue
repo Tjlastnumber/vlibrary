@@ -1,6 +1,9 @@
 <template>
   <div id="app" style="height: 100%">
-    <vl-layout>
+
+    <login-page v-if="!isLogin" @login="logining"></login-page>
+
+    <vl-layout v-else>
 
       <vl-side-layout>
         <vl-sidenav class="sidenav-background" :width="272" v-model="isOpenSidenav" :toggle-width="960">
@@ -8,7 +11,7 @@
           <header class="sidenav-header">
             <a href="#" class="nav-log">
               <img src="./assets/logo.png">
-              <h2 style="color: white" v-tooltip> Vue Admin </h2>
+              <h2 style="color: white"> Vue Admin </h2>
             </a>
           </header>
 
@@ -56,7 +59,9 @@
           </vl-shadow>
         </vl-toolbar>
 
+        <!-- content -->
         <vl-content>
+          <vl-popover :title="'title'" :content="'content'"></vl-popover>
           <slot></slot>
         </vl-content>
       </vl-content-layout>
@@ -93,11 +98,14 @@
   import VlCollapse from './components/VlCollapse/VlCollapse.vue'
   import VlContent from './components/VlContent/VlContent.vue'
   import VlBreadcrumb from './components/VlBreadcrumb/VlBreadcrumb.vue'
+  import VlPopover from './components/VlPopover/VlPopover.vue'
 
   // layout components
   import VlLayout from './components/VlLayout/VlLayout.vue'
   import VlSideLayout from './components/VlLayout/VlSideLayout.vue'
   import VlContentLayout from './components/VlLayout/VlContentLayout'
+
+  import LoginPage from './page/LoginPage.vue'
 
   export default {
     name: 'Layout',
@@ -111,18 +119,26 @@
       VlContentLayout,
       VlCollapse,
       VlContent,
-      VlBreadcrumb
+      VlBreadcrumb,
+      VlPopover,
+      LoginPage
     },
     data () {
       return {
         isOpenSidenav: true,
-        isOpenSetting: false
+        isOpenSetting: false,
+        isLogin: false
       }
     },
     mounted () {
     },
-    methods: {}
+    methods: {
+      logining () {
+        this.isLogin = true
+      }
+    }
   }
 </script>
 
+<style src="./assets/css/bootstrap.css"></style>
 <style src="./main.css"></style>
