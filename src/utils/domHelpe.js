@@ -29,3 +29,10 @@ export function getScrollElement (el) {
   }
   return ROOT
 }
+
+// function getMargin (el, parent) {
+//   if (!el) return
+//   const eRect = el.getBoundingClientRect()
+//   const pRect = parent.getBoundingClientRect()
+
+// }

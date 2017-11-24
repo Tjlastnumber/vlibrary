@@ -4,7 +4,7 @@
         <vl-toolbar class="vl-content-title">
           <vl-shadow :dp="1">
             <vl-toolbar-sub>
-                <h3 style="color: white">Content</h3>
+                <h3 style="color: white" v-tooltip="'content'">Content</h3>
             </vl-toolbar-sub>
           </vl-shadow>
         </vl-toolbar>

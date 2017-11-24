@@ -4,8 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VlMask from '@/components/VlMask/index.js'
+import VlPopover from '@/components/VlPopover/index.js'
 
 Vue.use(VlMask, {})
+Vue.use(VlPopover.vlTooltip)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

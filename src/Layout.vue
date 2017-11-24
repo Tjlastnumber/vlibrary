@@ -61,7 +61,6 @@
 
         <!-- content -->
         <vl-content>
-          <vl-popover :title="'title'" :content="'content'"></vl-popover>
           <slot></slot>
         </vl-content>
       </vl-content-layout>

@@ -109,6 +109,8 @@ export default {
         newNode.addEventListener('scroll', this.scrollHandler, () => {})
       }
       this.containerNode = newNode
+    },
+    setCoordinate () {
     }
   }
 }

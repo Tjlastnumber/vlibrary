@@ -4,7 +4,7 @@ const props = VlPopover.props
 const defaultOptions = {}
 Object.keys(props).forEach(key => {
   const prop = props[key]
-  const dv = prop.default
+  const dv = props.default
   if (prop && prop.default != null) {
     defaultOptions[key] = typeof dv === 'function' ? dv() : dv
   }
@@ -12,7 +12,7 @@ Object.keys(props).forEach(key => {
 
 let VlPopoverInstance = null
 
-export default function tip (Vue, options) {
+export default function popover (Vue, options) {
   options = options || {}
   if (VlPopoverInstance && VlPopoverInstance.$el.parentNode) {
     Object.assign(VlPopoverInstance, defaultOptions, options)
