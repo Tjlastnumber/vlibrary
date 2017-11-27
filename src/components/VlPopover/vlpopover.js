@@ -12,6 +12,11 @@ Object.keys(props).forEach(key => {
 
 let VlPopoverInstance = null
 
+/**
+ * 单例模式创建对象
+ * @param {Vue} Vue
+ * @param {参数值} options
+ */
 export default function popover (Vue, options) {
   options = options || {}
   if (VlPopoverInstance && VlPopoverInstance.$el.parentNode) {

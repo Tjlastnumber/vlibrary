@@ -42,7 +42,7 @@
         <vl-toolbar>
           <vl-shadow :dp="1" style="background-color: white">
             <vl-toolbar-sub v-show="!isOpenSidenav">
-              <button @click="isOpenSidenav = !isOpenSidenav">
+              <button v-tooltip="'Menu'" @click="isOpenSidenav = !isOpenSidenav">
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
               </button>
             </vl-toolbar-sub>
@@ -52,7 +52,7 @@
               </vl-breadcrumb>
             </vl-toolbar-sub>
             <vl-toolbar-sub style="margin-right: 8px">
-              <button @click="isOpenSetting = !isOpenSetting">
+              <button v-tooltip="'Setting'" @click="isOpenSetting = !isOpenSetting">
                 <span class="glyphicon glyphicon-cog"></span>
               </button>
             </vl-toolbar-sub>

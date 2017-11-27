@@ -1,11 +1,12 @@
 <template>
   <transition name="vl-popover-fade">
     <div v-show="visible"
+         class="vl-popover"
          :class="vlPopoverClass"
          :style="vlPopoverStyle"
          @mouseenter="onShow"
          @mouseleave="onHidden">
-      <div v-if="direction"
+      <div v-show="dock"
            :style="arrowBox"
            class="vl-popover-arrows"></div>
       <span v-if="title" class="vl-popover-title"> {{ title }} </span>
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { scrollable, getScrollElement } from '../../utils/domHelpe.js'
+import { scrollable, computedPosition } from '../../utils/domHelpe.js'
 export default {
   name: 'VlPopover',
   props: {
@@ -29,7 +30,7 @@ export default {
     content: {
       type: String
     },
-    direction: {
+    dock: {
       type: Array,
       default () {
         return ['top', 'left', 'right', 'bottom']
@@ -37,6 +38,7 @@ export default {
     },
     target: null,
     container: null,
+    /** @prop 持续时间 */
     duration: { type: Number, default: 400 },
     transition: { type: Boolean, default: true },
     width: { type: [String, Number], default: 'auto' },
@@ -70,13 +72,10 @@ export default {
     }
   },
   mounted () {
-    if (!this.$parent) {
-    }
-    console.info(this)
   },
   methods: {
     onShow () {
-      clearTimeout()
+      // clearTimeout(this.visibleTime)
       this.visible = true
     },
     onHidden () {
@@ -85,15 +84,14 @@ export default {
     onPosition () {
       this.setContainerNode()
       this.onShow()
-      let x = 0
-      let y = 0
-      this.$el.style.transform = `translate3d(${x}px, ${y}px, 0)`
+      this.asynSetPosition()
     },
     setContainerNode () {
       let oldNode = this.containerNode
       if (!this.target || this.target.parentNode === this.targetParentNode) return
       this.targetParentNode = this.target.parentNode
-      let newNode = this.container || getScrollElement(this.target)
+      let newNode = document.body
+      // this.container || getScrollElement(this.target)
       if (newNode === oldNode) return
       if (this.$el.parentNode !== newNode) {
         newNode.appendChild(this.$el)
@@ -110,7 +108,18 @@ export default {
       }
       this.containerNode = newNode
     },
-    setCoordinate () {
+    asynSetPosition () {
+      // https://cn.vuejs.org/v2/api/#Vue-nextTick
+      // 等待元素显示之后再进行计算
+      this.$nextTick(this.setPosition)
+    },
+    setPosition () {
+      let x = 0
+      let y = 0
+      const {location} = computedPosition(this.$el, this.target, this.containerNode)
+      x = location.x
+      y = location.y
+      this.$el.style.transform = `translate3d(${x}px, ${y}px, 0)`
     }
   }
 }
