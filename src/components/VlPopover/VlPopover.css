@@ -13,14 +13,29 @@
   z-index: 9999;
   transform: translate3d(0, 0, 0);
   transition: opacity .3s;
+  opacity: .9;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  max-width: 500px;
 }
 
-.vl-popover-arrows {
+@media (max-width : 768) {
+  .vl-popover {
+    max-width: 300px
+  }
+}
 
+
+.vl-popover-fade-enter,
+.vl-popover-fade-leave-to {
+  opacity: 0;
 }
 
 .vl-popover-fade-enter-active,
 .vl-popover-fade-leave-active {
   transition: all 0.2s ease-in-out;
+}
+
+.vl-popover-content {
+  margin: 0;
+  padding: 0;
 }

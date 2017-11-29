@@ -75,7 +75,8 @@
               </vl-toolbar-sub>
               <span class="flex"></span>
               <vl-toolbar-sub style="margin-right: 8px">
-                <button @click="isOpenSetting = !isOpenSetting">
+                <button @click="isOpenSetting = !isOpenSetting"
+                        v-tooltip="'Close'">
                   <span class="glyphicon glyphicon-remove"></span>
                 </button>
               </vl-toolbar-sub>

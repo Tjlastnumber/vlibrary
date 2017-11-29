@@ -1,7 +1,7 @@
-/**
- * 根元素
- */
+/* eslint-disable */
+
 const ROOT = document.body
+const DEFAULT_DOCK = ['bottom', 'top', 'right', 'left']
 
 /**
  * 判断元素是否设置可滚动
@@ -35,7 +35,7 @@ export function getScrollElement (el) {
  * @param {Element} el
  * @param {父级元素} parent
  */
-export function getMargin (el, parent) {
+export function getLocation (el, parent) {
   if (!el) return
 
   const eRect = el.getBoundingClientRect()
@@ -43,6 +43,7 @@ export function getMargin (el, parent) {
   const { width, height } = eRect
   const { width: pw, height: ph } = pRect
 
+  // 子元素相对于父级元素的位置
   const top = eRect.top - pRect.top
   const left = eRect.left - pRect.left
   const right = eRect.right - pRect.left
@@ -65,6 +66,7 @@ export function getMargin (el, parent) {
     margin: {
       top: {
         dock: 'top',
+        computed: 'height',
         size: top,
         start: vertex.tl,
         mid: { x: midX, y: top },
@@ -72,6 +74,7 @@ export function getMargin (el, parent) {
       },
       bottom: {
         dock: 'bottom',
+        computed: 'height',
         size: ph - bottom,
         start: vertex.bl,
         mid: { x: midX, y: bottom },
@@ -79,6 +82,7 @@ export function getMargin (el, parent) {
       },
       left: {
         dock: 'left',
+        computed: 'width',
         size: left,
         start: vertex.tl,
         mid: { x: left, y: midY },
@@ -86,6 +90,7 @@ export function getMargin (el, parent) {
       },
       right: {
         dock: 'right',
+        computed: 'width',
         size: pw - right,
         start: vertex.tr,
         mid: { x: right, y: midY },
@@ -95,20 +100,76 @@ export function getMargin (el, parent) {
   }
 }
 
-export function computedPosition (el, target, parent) {
-  let x = 0
-  let y = 0
-  const {margin} = getMargin(target, parent)
-  const { width: eWidth } = el.getBoundingClientRect()
+/**
+ * 计算元素的位置
+ *
+ * @param {计算的元素} el
+ * @param {目标元素} target
+ * @param {容器元素} parent
+ * @param {偏移量} offset
+ */
+export function computedPosition (el, target, parent, offset) {
+  let position = {}
 
-  console.info(eWidth)
-  x = margin.bottom.mid.x - eWidth / 2
-  y = margin.bottom.end.y + 10
+  const { margin } = getLocation(target, parent)
+  const eRect = el.getBoundingClientRect()
 
-  return {
-    location: {
-      x: x,
-      y: y
-    }
+  const locationQuque = Object.keys(margin)
+    .map(key => {
+      const location = margin[key]
+
+      const index = DEFAULT_DOCK.indexOf(location.dock)
+      // 计算显示方向权重
+      location.weight = index > -1 ? DEFAULT_DOCK.length - index : 0
+
+      if (location.size > eRect[location.computed] + offset) {
+        location.weight++
+      }
+      else {
+        location.weight--
+      }
+      return location
+    })
+
+  const fristLocation = locationQuque.sort((a, b) => b.weight - a.weight)[0]
+
+  position.x = fristLocation.mid.x + computedOffset(fristLocation, eRect, offset).x
+  position.y = fristLocation.mid.y + computedOffset(fristLocation, eRect, offset).y
+
+  return position
+}
+
+/**
+ * 计算偏移量
+ *
+ * @param {当前位置} location
+ * @param {元素参数} eRect
+ * @param {偏移量} offset
+ */
+function computedOffset (location, eRect, offset) {
+  let position = {}
+
+  position.x = location.dock === 'top' ? -eRect.width / 2 :
+               location.dock === 'right' ? offset :
+               location.dock === 'left' ? -eRect.width - offset :
+               location.dock === 'bottom' ? -eRect.width / 2 : 0
+
+  position.y = location.dock === 'top' ? -eRect.height - offset :
+               location.dock === 'right' ? -eRect.height / 2 :
+               location.dock === 'left' ? -eRect.height / 2 :
+               location.dock === 'bottom' ? offset : 0
+
+  return position
+}
+
+export function debounce (fn, delay) {
+  let timer
+  return function () {
+    const context = this
+    const args = arguments
+    clearTimeout(timer)
+    timer = setTimeout(function () {
+      fn.apply(context, args)
+    }, delay)
   }
 }

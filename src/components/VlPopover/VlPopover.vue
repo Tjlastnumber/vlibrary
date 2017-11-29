@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { scrollable, computedPosition } from '../../utils/domHelpe.js'
+import { scrollable, debounce, computedPosition } from '../../utils/domHelpe.js'
 export default {
   name: 'VlPopover',
   props: {
@@ -108,17 +108,21 @@ export default {
       }
       this.containerNode = newNode
     },
+    scrollHandler: debounce(function () {
+      this.setPosition()
+    }, 200),
     asynSetPosition () {
       // https://cn.vuejs.org/v2/api/#Vue-nextTick
-      // 等待元素显示之后再进行计算
+      // 等待元素显示之后再进行位置设置
       this.$nextTick(this.setPosition)
     },
     setPosition () {
+      if (!this.$el || !this.target || !this.containerNode) return
       let x = 0
       let y = 0
-      const {location} = computedPosition(this.$el, this.target, this.containerNode)
-      x = location.x
-      y = location.y
+      const position = computedPosition(this.$el, this.target, this.containerNode, 10)
+      x = position.x + this.containerNode.scrollLeft
+      y = position.y + this.containerNode.scrollTop
       this.$el.style.transform = `translate3d(${x}px, ${y}px, 0)`
     }
   }
