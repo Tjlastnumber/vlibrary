@@ -108,19 +108,19 @@ export function getLocation (el, parent) {
  * @param {容器元素} parent
  * @param {偏移量} offset
  */
-export function computedPosition (el, target, parent, offset) {
+export function computedPosition (el, target, parent, offset, dock) {
   let position = {}
 
   const { margin } = getLocation(target, parent)
   const eRect = el.getBoundingClientRect()
-
+  const dockQuque = dock && dock.length ? dock : DEFAULT_DOCK
   const locationQuque = Object.keys(margin)
     .map(key => {
       const location = margin[key]
 
-      const index = DEFAULT_DOCK.indexOf(location.dock)
+      const index = dockQuque.indexOf(location.dock)
       // 计算显示方向权重
-      location.weight = index > -1 ? DEFAULT_DOCK.length - index : 0
+      location.weight = index > -1 ? DEFAULT_DOCK.length - index : DEFAULT_DOCK.length - dockQuque.length
 
       if (location.size > eRect[location.computed] + offset) {
         location.weight++

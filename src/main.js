@@ -5,11 +5,17 @@ import App from './App'
 import router from './router'
 import VlMask from '@/components/VlMask/index.js'
 import VlPopover from '@/components/VlPopover/index.js'
+import axios from 'axios'
 
-Vue.use(VlMask, {})
+Vue.use(VlMask, { color: '#ffffff' })
 Vue.use(VlPopover.vlTooltip)
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios
+// axios.defaults.baseURL = 'http://localhost:8088/api'
+axios.defaults.headers = {
+  'Content-Type': 'application/x-www-form-urlencoded;'
+}
 
 /* eslint-disable no-new */
 new Vue({

@@ -18,7 +18,7 @@ export default {
   install (Vue, options) {
     options = options || {}
     const name = options.name || 'tooltip'
-    const allDocks = ['top', 'right', 'bottom', 'left']
+    const allDocks = ['bottom', 'top', 'right', 'left']
 
     Vue.directive(name, {
       bind (el, binding) {

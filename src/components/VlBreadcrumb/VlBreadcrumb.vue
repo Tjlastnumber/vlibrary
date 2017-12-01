@@ -1,6 +1,8 @@
 <template>
   <div ref="content">
-    <slot></slot>
+    <slot>
+      <h3> {{path}} </h3>
+    </slot>
   </div>
 </template>
 

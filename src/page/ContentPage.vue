@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vl-content-height {
   height: 450px;
 }

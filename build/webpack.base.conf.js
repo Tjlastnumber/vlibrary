@@ -26,7 +26,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'velocity': 'velocity-animate/velocity.js'
+      'velocity': 'velocity-animate/velocity.js',
+      'axios': 'axios/dist/axios.min.js'
     }
   },
   module: {
