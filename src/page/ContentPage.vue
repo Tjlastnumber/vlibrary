@@ -8,7 +8,7 @@
             </vl-toolbar-sub>
           </vl-shadow>
         </vl-toolbar>
-      <vl-content class="vl-content-height">
+      <vl-content class="vl-content-height vl-scrollbar">
         <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at, in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>
 
         <p>
@@ -57,9 +57,7 @@
 </template>
 
 <script>
-import VlCard from '../components/VlCard/VlCard'
-import VlCardHeader from '@/components/VlCard/VlCardHeader'
-import VlCardContent from '@/components/VlCard/VlCardContent'
+import { VlCard, VlCardHeader, VlCardContent } from '../components/VlCard/index.js'
 import VlContent from '@/components/VlContent/VlContent'
 import VlToolbar from '@/components/VlToolbar/VlToolbar'
 import VlToolbarSub from '@/components/VlToolbar/VlToolbarSub'
@@ -70,7 +68,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vl-content-height {
   height: 450px;
 }

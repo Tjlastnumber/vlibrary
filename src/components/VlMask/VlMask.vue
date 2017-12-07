@@ -1,12 +1,18 @@
 <template>
   <transition name="fade">
-    <div class="mask" @click="click" v-if="isShow"></div>
+    <div class="mask" :style="vlMaskStyle" @click="click" v-if="isShow"></div>
   </transition>
 </template>
 
 <script>
   export default {
     name: 'VlMask',
+    props: {
+      color: {
+        type: String,
+        default: '#000'
+      }
+    },
     data () {
       return {
         isShow: false,
@@ -19,6 +25,13 @@
         this.$mount()
         document.body.appendChild(this.$el)
         this.$emit('created')
+      }
+    },
+    computed: {
+      vlMaskStyle () {
+        return {
+          background: this.color
+        }
       }
     },
     methods: {
@@ -46,7 +59,6 @@
     left: 0;
     z-index: 1040;
     opacity: .5;
-    background-color: #000;
   }
 
   .fade-enter-active,

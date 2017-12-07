@@ -26,9 +26,7 @@
 </template>
 
 <script>
-import VlCard from '@/components/VlCard/VlCard.vue'
-import VlCardHeader from '@/components/VlCard/VlCardHeader.vue'
-import VlCardContent from '@/components/VlCard/VlCardContent.vue'
+import { VlCard, VlCardContent, VlCardHeader } from '@/components/VlCard/index.js'
 export default {
   name: 'HelloWorld',
   components: {

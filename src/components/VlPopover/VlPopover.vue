@@ -6,20 +6,19 @@
          :style="vlPopoverStyle"
          @mouseenter="onShow"
          @mouseleave="onHidden">
-      <div v-show="dock"
-           :style="arrowBox"
-           class="vl-popover-arrows"></div>
       <span v-if="title" class="vl-popover-title"> {{ title }} </span>
-      <p v-if="content"
-         class="vl-popover-content">
-        {{ content }}
-      </p>
+      <slot>
+        <p v-if="content"
+          class="vl-popover-content">
+          {{ content }}
+        </p>
+      </slot>
     </div>
   </transition>
 </template>
 
 <script>
-import { scrollable, debounce, computedPosition } from '../../utils/domHelpe.js'
+import { computedPosition } from '../../utils/domHelpe.js'
 export default {
   name: 'VlPopover',
   props: {
@@ -30,10 +29,10 @@ export default {
     content: {
       type: String
     },
-    dock: {
+    docks: {
       type: Array,
       default () {
-        return ['top', 'left', 'right', 'bottom']
+        return ['bottom', 'top', 'right', 'left']
       }
     },
     target: null,
@@ -48,7 +47,7 @@ export default {
   },
   data () {
     this.containerNode = null
-    this.targetParentNode = null
+    this.targetParentNode = this.target.parentNode
     this.visibleTime = null
     return {
       visible: true
@@ -75,7 +74,7 @@ export default {
   },
   methods: {
     onShow () {
-      // clearTimeout(this.visibleTime)
+      clearTimeout(this.visibleTime)
       this.visible = true
     },
     onHidden () {
@@ -87,30 +86,16 @@ export default {
       this.asynSetPosition()
     },
     setContainerNode () {
-      let oldNode = this.containerNode
-      if (!this.target || this.target.parentNode === this.targetParentNode) return
-      this.targetParentNode = this.target.parentNode
-      let newNode = document.body
-      // this.container || getScrollElement(this.target)
-      if (newNode === oldNode) return
-      if (this.$el.parentNode !== newNode) {
-        newNode.appendChild(this.$el)
+      if (this.containerNode === null) {
+        this.containerNode = document.body
+        this.targetParentNode = this.target.parentNode
+        const position = document.body.style.position
+        document.body.appendChild(this.$el)
+        if (!position || position === 'static') {
+          document.body.style.position = 'relative'
+        }
       }
-      const position = newNode.style.position
-      if (!position || position === 'static') {
-        newNode.style.position = 'relative'
-      }
-      if (oldNode) {
-        oldNode.removeEventListener('scroll', this.scrollHandler, () => {})
-      }
-      if (scrollable(newNode)) {
-        newNode.addEventListener('scroll', this.scrollHandler, () => {})
-      }
-      this.containerNode = newNode
     },
-    scrollHandler: debounce(function () {
-      this.setPosition()
-    }, 200),
     asynSetPosition () {
       // https://cn.vuejs.org/v2/api/#Vue-nextTick
       // 等待元素显示之后再进行位置设置
@@ -118,11 +103,9 @@ export default {
     },
     setPosition () {
       if (!this.$el || !this.target || !this.containerNode) return
-      let x = 0
-      let y = 0
-      const position = computedPosition(this.$el, this.target, this.containerNode, 10)
-      x = position.x + this.containerNode.scrollLeft
-      y = position.y + this.containerNode.scrollTop
+      const position = computedPosition(this.$el, this.target, this.containerNode, 10, this.docks)
+      let x = position.x + this.containerNode.scrollLeft
+      let y = position.y + this.containerNode.scrollTop
       this.$el.style.transform = `translate3d(${x}px, ${y}px, 0)`
     }
   }

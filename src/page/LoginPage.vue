@@ -1,15 +1,21 @@
 <template>
   <vl-card class="vl-login">
-    <vl-card-header>
-      <vl-toolbar>
-        <vl-toolbar-sub>Login</vl-toolbar-sub>
-      </vl-toolbar>
-    </vl-card-header>
-    <vl-card-content>
+      <vl-card-header>
+        <vl-toolbar>
+          <vl-toolbar-sub>Login</vl-toolbar-sub>
+        </vl-toolbar>
+      </vl-card-header>
+      <vl-card-content>
       <div class="vl-login-input">
-        <input type="textbox">
-        <input type="textbox">
-        <button @click="logining">Login</button>
+        <div class="form-group">
+          <label for="UserName">用户名</label>
+          <input type="username" class="form-control" id="UserName" placeholder="用户名">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">密 码</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+        </div>
+        <button class="btn btn-default" @click="logining">Login</button>
       </div>
     </vl-card-content>
   </vl-card>

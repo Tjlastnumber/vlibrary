@@ -108,19 +108,19 @@ export function getLocation (el, parent) {
  * @param {容器元素} parent
  * @param {偏移量} offset
  */
-export function computedPosition (el, target, parent, offset) {
+export function computedPosition (el, target, parent, offset, dock) {
   let position = {}
 
   const { margin } = getLocation(target, parent)
   const eRect = el.getBoundingClientRect()
-
+  const dockQuque = dock && dock.length ? dock : DEFAULT_DOCK
   const locationQuque = Object.keys(margin)
     .map(key => {
       const location = margin[key]
 
-      const index = DEFAULT_DOCK.indexOf(location.dock)
+      const index = dockQuque.indexOf(location.dock)
       // 计算显示方向权重
-      location.weight = index > -1 ? DEFAULT_DOCK.length - index : 0
+      location.weight = index > -1 ? DEFAULT_DOCK.length - index : DEFAULT_DOCK.length - dockQuque.length
 
       if (location.size > eRect[location.computed] + offset) {
         location.weight++
@@ -162,14 +162,23 @@ function computedOffset (location, eRect, offset) {
   return position
 }
 
-export function debounce (fn, delay) {
-  let timer
-  return function () {
-    const context = this
-    const args = arguments
-    clearTimeout(timer)
-    timer = setTimeout(function () {
-      fn.apply(context, args)
-    }, delay)
+/**
+ * 防抖函数
+ * @param {回调函数} func
+ * @param {触发间隔} wait
+ * @param {是否立即执行} immediate
+ */
+export function debounce(func, wait, immediate) {
+    let timeout
+    return function() {
+      let context = this, args = arguments
+      let later = function() {
+      timeout = null
+      if (!immediate) func.apply(context, args)
+    }
+    let callNow = immediate & !timeout
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+    if (callNow) func.apply(context, args)
   }
 }

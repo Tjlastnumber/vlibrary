@@ -15,18 +15,18 @@
             </a>
           </header>
 
-          <div class="vl-sidenav-content">
-            <vl-collapse title="Pages"
+          <div class="vl-sidenav-content vl-scrollbar">
+            <vl-collapse title="功能列表"
                          style="color: white"
-                         class="menu-collapse"
+                         class="menu-collapse "
                          :is-open="true">
               <ul class="menu-list menu-toggle-list">
                 <li>
                   <router-link v-for="(route,index) in $router.options.routes"
-                              :class="{active : route.path === $route.path}"
-                              :key="index"
-                              :to="route.path">
-                    {{ route.name }}
+                               :key="index"
+                               :to="route.path"
+                               :active-class="'active'">
+                    {{ route.cname }}
                   </router-link>
                 </li>
               </ul>
@@ -48,7 +48,6 @@
             </vl-toolbar-sub>
             <vl-toolbar-sub class="flex">
               <vl-breadcrumb :path="$route.name">
-                <h3> {{ $route.name }} </h3>
               </vl-breadcrumb>
             </vl-toolbar-sub>
             <vl-toolbar-sub style="margin-right: 8px">
@@ -60,7 +59,7 @@
         </vl-toolbar>
 
         <!-- content -->
-        <vl-content>
+        <vl-content class="vl-scrollbar">
           <slot></slot>
         </vl-content>
       </vl-content-layout>
@@ -99,6 +98,9 @@
   import VlContent from './components/VlContent/VlContent.vue'
   import VlBreadcrumb from './components/VlBreadcrumb/VlBreadcrumb.vue'
   import VlPopover from './components/VlPopover/VlPopover.vue'
+  import VlCard from '@/components/VlCard/VlCard'
+  import VlCardHeader from '@/components/VlCard/VlCardHeader'
+  import VlCardContent from '@/components/VlCard/VlCardContent'
 
   // layout components
   import VlLayout from './components/VlLayout/VlLayout.vue'
@@ -121,7 +123,10 @@
       VlContent,
       VlBreadcrumb,
       VlPopover,
-      LoginPage
+      LoginPage,
+      VlCard,
+      VlCardHeader,
+      VlCardContent
     },
     data () {
       return {
@@ -135,6 +140,9 @@
     methods: {
       logining () {
         this.isLogin = true
+      },
+      test () {
+        console.info(this.$router)
       }
     }
   }
