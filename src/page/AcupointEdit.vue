@@ -5,7 +5,11 @@
         <div class="form-group has-success has-feedback">
           <label class="control-label col-sm-3" for="inputSuccess3">考题名称</label>
           <div class="col-sm-9">
+<<<<<<< HEAD
             <input type="text" v-model="$route.params.acupointname" class="form-control" id="inputSuccess3" aria-describedby="inputSuccess3Status">
+=======
+            <input type="text" v-model="$route.params.title" class="form-control" id="inputSuccess3" aria-describedby="inputSuccess3Status">
+>>>>>>> 187a6d6aff59e74c1a1b8f0dac2827ec0e7f22a0
             <span id="inputSuccess3Status" class="sr-only">(success)</span>
           </div>
         </div>
