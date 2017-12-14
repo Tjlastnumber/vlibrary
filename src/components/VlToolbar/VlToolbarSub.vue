@@ -65,7 +65,7 @@ export default {
   }
 
   .vl-toolbar-sub button {
-    background-color: transparent;
+    /* background-color: transparent; */
     border: 0;
     margin: 0 6px;
     height: 40px;

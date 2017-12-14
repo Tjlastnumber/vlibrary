@@ -40,7 +40,7 @@
             </tr>
           </tbody>
         </table>
-        <vl-pagination style="margin: 16px" :total-rows="total" :page-rows="pageSize" v-model="currentPage"/>
+        <vl-pagination style="margin: 16px" :total-rows="total" :page-rows="pageSize" v-model="currentPage" @currentPageChanged="currentPageChange()"/>
       </div>
       <!-- <div style="margin: 16px">
         <button class="btn btn-default" @click="getAllQuestion">getAll</button>
@@ -105,11 +105,14 @@ export default {
     },
     editRow (row) {
       this.$router.push({ name: 'question', params: row })
+    },
+    currentPageChange (val) {
+      this.questions = paginationHelper(this.allquestions, val, this.pageSize).list
     }
   },
   watch: {
     currentPage (val) {
-      this.questions = paginationHelper(this.allquestions, val, this.pageSize).list
+      // this.questions = paginationHelper(this.allquestions, val, this.pageSize).list
     }
   }
 }

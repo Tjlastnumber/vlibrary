@@ -2,7 +2,7 @@
   <vl-card>
     <vl-card-content>
       <div>
-        <vl-pagination :total-rows="4" :limit="4" :page-rows="1" v-model="currentPage"/>
+        <vl-pagination :total-rows="10" :limit="4" :page-rows="1" v-model="currentPage"/>
         {{ currentPage }}
       </div>
     </vl-card-content>

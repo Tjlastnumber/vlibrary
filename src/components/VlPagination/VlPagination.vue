@@ -3,20 +3,16 @@
     <li class="page-item"
         :class="{'disabled' : currentPage === 1}"
         @click="clickItem(1)">
-      <span class="page-link">
-        &laquo;
-      </span>
+      <span v-html="firstLabel" class="page-link"></span>
     </li>
     <li class="page-item"
         :class="{'disabled' : currentPage === 1}"
         @click="clickItem(currentPage > 1 ? currentPage-1 : 1)">
-      <span class="page-link">
-        &lsaquo;
-      </span>
+      <span v-html="prevLabel" class="page-link"></span>
     </li>
 
     <li class="page-item disabled" v-if="showFirstEllipsis">
-      <span class="page-link">…</span>
+      <span v-html="ellipsisLabel" class="page-link"></span>
     </li>
 
     <li v-for="pageNumber in getPages"
@@ -32,22 +28,18 @@
 
     <li class="page-item disabled"
         v-if="showLastEllipsis">
-      <span class="page-link">…</span>
+      <span v-html="ellipsisLabel" class="page-link"></span>
     </li>
 
     <li class="page-item"
         :class="{'disabled' : currentPage === totalPage}"
         @click="clickItem(currentPage < totalPage ? currentPage + 1 : totalPage)">
-      <span class="page-link">
-        &rsaquo;
-      </span>
+      <span v-html="nextLabel" class="page-link"></span>
     </li>
     <li class="page-item"
         :class="{'disabled' : currentPage === totalPage}"
         @click="clickItem(totalPage)">
-      <span class="page-link">
-        &raquo;
-      </span>
+      <span v-html="lastLabel" class="page-link"></span>
     </li>
   </ul>
 </template>

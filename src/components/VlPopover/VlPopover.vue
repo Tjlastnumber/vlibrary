@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { computedPosition } from '../../utils/domHelpe.js'
+import { computedLocation } from '../../utils/domHelper.js'
 export default {
   name: 'VlPopover',
   props: {
@@ -39,7 +39,7 @@ export default {
     container: null,
     /** @prop 持续时间 */
     duration: { type: Number, default: 400 },
-    transition: { type: Boolean, default: true },
+    transition: { type: Boolean, default: false },
     width: { type: [String, Number], default: 'auto' },
     height: { type: [String, Number], default: 'auto' },
     zIndex: { type: Number, default: 999 },
@@ -57,7 +57,8 @@ export default {
     arrowBox () {
     },
     vlPopoverClass () {
-      return this.customClass
+      const transitionClass = this.transition ? 'transition-transfrom' : ''
+      return [this.customClass, transitionClass]
     },
     vlPopoverStyle () {
       let width = this.width
@@ -69,8 +70,6 @@ export default {
         zIndex: zIndex
       }
     }
-  },
-  mounted () {
   },
   methods: {
     onShow () {
@@ -103,7 +102,7 @@ export default {
     },
     setPosition () {
       if (!this.$el || !this.target || !this.containerNode) return
-      const position = computedPosition(this.$el, this.target, this.containerNode, 10, this.docks)
+      const position = computedLocation(this.$el, this.target, this.containerNode, 10, this.docks)
       let x = position.x + this.containerNode.scrollLeft
       let y = position.y + this.containerNode.scrollTop
       this.$el.style.transform = `translate3d(${x}px, ${y}px, 0)`

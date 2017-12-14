@@ -51,7 +51,9 @@
               </vl-breadcrumb>
             </vl-toolbar-sub>
             <vl-toolbar-sub style="margin-right: 8px">
-              <button v-tooltip="'Setting'" @click="isOpenSetting = !isOpenSetting">
+              <button class="setting-button"
+                      v-tooltip="'Setting'"
+                      @click="isOpenSetting = !isOpenSetting">
                 <span class="glyphicon glyphicon-cog"></span>
               </button>
             </vl-toolbar-sub>
@@ -74,7 +76,8 @@
               </vl-toolbar-sub>
               <span class="flex"></span>
               <vl-toolbar-sub style="margin-right: 8px">
-                <button @click="isOpenSetting = !isOpenSetting"
+                <button class="setting-button"
+                        @click="isOpenSetting = !isOpenSetting"
                         v-tooltip="'Close'">
                   <span class="glyphicon glyphicon-remove"></span>
                 </button>

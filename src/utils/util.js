@@ -1,11 +1,33 @@
 /* eslint-disable */
-
 const ROOT = document.body
 const DEFAULT_DOCK = ['bottom', 'top', 'right', 'left']
 
+export const Position = {
+  top: 'top',
+  left: 'left',
+  right: 'right',
+  bottom: 'bottom',
+  leftTop: 'leftTop',
+  rightTop: 'rightTop',
+  leftBottom: 'leftBottom',
+  rightBottom: 'rightBottom',
+  middle: 'middle'
+}
+
+/**
+ * 校验位置信息
+ *
+ * @param {String} dock
+ * @returns {Boolean} result
+ */
+export function checkDock (dock) {
+  return Object.keys(Position).indexOf(dock) > 0
+}
+
 /**
  * 判断元素是否设置可滚动
- * @param {要判断是否可滚动的元素} el
+ *
+ * @param {Element} el
  */
 export function scrollable (el) {
   let css = window.getComputedStyle(el, null)
@@ -18,7 +40,7 @@ export function scrollable (el) {
 
 /**
  * 获取指定元素父级第一个可滚动元素
- * @param {指定需要判断的元素} el
+ * @param {Element} el
  */
 export function getScrollElement (el) {
   if (!el) return ROOT
@@ -33,7 +55,8 @@ export function getScrollElement (el) {
 /**
  * 获取目标元素之间边距
  * @param {Element} el
- * @param {父级元素} parent
+ * @param {Element} parent
+ * @returns {Object}
  */
 export function getLocation (el, parent) {
   if (!el) return
@@ -103,12 +126,13 @@ export function getLocation (el, parent) {
 /**
  * 计算元素的位置
  *
- * @param {计算的元素} el
- * @param {目标元素} target
- * @param {容器元素} parent
- * @param {偏移量} offset
+ * @param {Object} el
+ * @param {Object} target
+ * @param {Object} parent
+ * @param {Number} offset
+ * @returns {Object} position
  */
-export function computedPosition (el, target, parent, offset, dock) {
+export function computedLocation (el, target, parent, offset, dock) {
   let position = {}
 
   const { margin } = getLocation(target, parent)
@@ -142,9 +166,10 @@ export function computedPosition (el, target, parent, offset, dock) {
 /**
  * 计算偏移量
  *
- * @param {当前位置} location
- * @param {元素参数} eRect
- * @param {偏移量} offset
+ * @param {Object} location
+ * @param {Object} eRect
+ * @param {Object} offset
+ * @returns {Object} position
  */
 function computedOffset (location, eRect, offset) {
   let position = {}
@@ -182,3 +207,66 @@ export function debounce(func, wait, immediate) {
     if (callNow) func.apply(context, args)
   }
 }
+
+/**
+ * 相对于容器绝对定位
+ *
+ * @param {Element} el 元素对象
+ * @param {Element} parent 父级容器
+ * @param {String} dock 停靠位置
+ * @returns {Object} position 返回绝对定位的位置对象
+ */
+export function absolutePosition (el, parent, offset, dock) {
+  if (!el) throw console.error('属性 {el} 不能为空')
+  if (!parent) throw console.error('属性 {parent} 不能为空')
+  if (!dock) dock = Position.top
+
+  let elRect = el.getBoundingClientRect()
+  let parentRect = parent.getBoundingClientRect()
+
+  let centerX = (parentRect.width - elRect.width) / 2
+  let centerY = (parentRect.height - elRect.height) / 2
+
+  // 计算 8 个位置的绝对坐标
+  let position = {
+    top: { x: centerX, y: parentRect.top },
+    left: { x: parentRect.left, y: centerY },
+    right: { x: parentRect.left + parentRect.width, y: centerY },
+    bottom: { x: centerX, y: parentRect.top + parentRect.height },
+    leftTop: { x: parentRect.left, y: parentRect.top },
+    rightTop: { x: parentRect.left + parentRect.width, y: parentRect.top},
+    leftBottom: { x: parentRect.left, y: parentRect.top + parentRect.height},
+    rightBottom: { x: parentRect.left + parentRect.width, y: parentRect.top + parentRect.height},
+    middle: { x: parentRect.left + centerX, y: parentRect.top + centerY }
+  }
+
+  // 计算 8 个位置不同的偏移量
+  let positionOffset = {
+    x: dock === Position.left ||
+       dock === Position.leftBottom ||
+       dock === Position.leftTop ?
+       offset :
+       dock === Position.right ||
+       dock === Position.rightBottom ||
+       dock === Position.rightTop ?
+       -offset-elRect.width : 0,
+    y: dock === Position.top ||
+       dock === Position.leftTop ||
+       dock === Position.rightTop ?
+       offset :
+       dock === Position.bottom ||
+       dock === Position.leftBottom ||
+       dock === Position.rightBottom ?
+       -offset-elRect.height : 0
+  }
+
+  let result = {
+    x: position[dock].x + positionOffset.x,
+    y: position[dock].y + positionOffset.y,
+    width: elRect.width,
+    height: elRect.height
+  }
+
+  return result
+}
+

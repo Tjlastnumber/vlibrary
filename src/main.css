@@ -77,6 +77,10 @@
     max-width: 272px;
   }
 
+  .setting-button {
+    background-color: transparent;
+  }
+
   .menu-collapse {
     border-top: 1px solid rgba(230, 230, 230, 0.2);
     border-bottom: 1px solid rgba(230, 230, 230, 0.2);
