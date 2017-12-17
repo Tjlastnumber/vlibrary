@@ -14,8 +14,9 @@ let VlPopoverInstance = null
 
 /**
  * 单例模式创建对象
+ *
  * @param {Vue} Vue
- * @param {参数值} options
+ * @param {Object} options
  */
 export default function popover (Vue, options) {
   options = options || {}

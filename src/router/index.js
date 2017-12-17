@@ -60,6 +60,11 @@ export default new Router({
       path: '/questions/:id',
       name: 'question',
       component: resolve => require(['@/page/QuestionDetail'], resolve)
+    }, {
+      path: '/select',
+      name: 'Select',
+      cname: 'Select',
+      component: resolve => require(['@/page/SelectPage'], resolve)
     }
   ]
 })
