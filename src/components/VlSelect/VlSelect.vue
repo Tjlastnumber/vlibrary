@@ -1,6 +1,6 @@
 <template>
   <select :disabled="disabled"
-          @input="selectChanged($event, $event.target.value)">
+          @input="selectChanged($event.target.selectedIndex)">
     <slot>
       <option v-for="(item, index) in options"
               :key="index"
@@ -44,8 +44,8 @@ export default {
   computed: {
   },
   methods: {
-    selectChanged (arg, value) {
-      this.$emit('selectChanged', this.options[arg.target.selectedIndex][this.optionValue])
+    selectChanged (index) {
+      this.$emit('selectChanged', this.options[index][this.optionValue])
     }
   }
 }

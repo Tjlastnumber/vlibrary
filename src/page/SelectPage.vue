@@ -28,11 +28,6 @@ export default {
       }],
       selected: null
     }
-  },
-  watch: {
-    selected (value) {
-      console.info(value)
-    }
   }
 }
 </script>
