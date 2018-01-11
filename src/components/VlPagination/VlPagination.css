@@ -9,8 +9,9 @@
     list-style: none;
     border-radius: .25rem;
 }
-.page-item.disabled .page-link {
+.page-item .disabled .page-link {
   color: #868e96;
+  cursor: no-drop;
   pointer-events: none;
   background-color: #fff;
   border-color: #ddd;

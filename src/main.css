@@ -82,6 +82,7 @@
   }
 
   .menu-collapse {
+    color: white;
     border-top: 1px solid rgba(230, 230, 230, 0.2);
     border-bottom: 1px solid rgba(230, 230, 230, 0.2);
   }
@@ -153,3 +154,18 @@
     background: #e1e1e1;
     background: var(--md-theme-demo-light-scrollbar-background-on-background-variant, #e1e1e1);
   }
+
+  .router-fade-enter-active,
+  .router-fade-leave-active {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .router-fade-enter {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  .router-fade-leave-to {
+    opacity: 0;
+  }
+

@@ -5,7 +5,7 @@ const DEFAULT_DOCK = ['bottom', 'top', 'right', 'left']
 
 /**
  * 判断元素是否设置可滚动
- * @param {要判断是否可滚动的元素} el
+ * @param {Element} el
  */
 export function scrollable (el) {
   let css = window.getComputedStyle(el, null)
@@ -18,7 +18,7 @@ export function scrollable (el) {
 
 /**
  * 获取指定元素父级第一个可滚动元素
- * @param {指定需要判断的元素} el
+ * @param {Element} el
  */
 export function getScrollElement (el) {
   if (!el) return ROOT
@@ -33,7 +33,7 @@ export function getScrollElement (el) {
 /**
  * 获取目标元素之间边距
  * @param {Element} el
- * @param {父级元素} parent
+ * @param {Element} parent
  */
 export function getLocation (el, parent) {
   if (!el) return
@@ -103,10 +103,10 @@ export function getLocation (el, parent) {
 /**
  * 计算元素的位置
  *
- * @param {计算的元素} el
- * @param {目标元素} target
- * @param {容器元素} parent
- * @param {偏移量} offset
+ * @param {Element} el
+ * @param {Element} target
+ * @param {Element} parent
+ * @param {Number} offset
  */
 export function computedLocation (el, target, parent, offset, dock) {
   let position = {}
@@ -142,9 +142,9 @@ export function computedLocation (el, target, parent, offset, dock) {
 /**
  * 计算偏移量
  *
- * @param {当前位置} location
- * @param {元素参数} eRect
- * @param {偏移量} offset
+ * @param {Object} location
+ * @param {Object} eRect
+ * @param {Number} offset
  */
 function computedOffset (location, eRect, offset) {
   let position = {}
@@ -164,9 +164,9 @@ function computedOffset (location, eRect, offset) {
 
 /**
  * 防抖函数
- * @param {回调函数} func
- * @param {触发间隔} wait
- * @param {是否立即执行} immediate
+ * @param {Func} func
+ * @param {Number} wait
+ * @param {Boolean} immediate
  */
 export function debounce(func, wait, immediate) {
     let timeout

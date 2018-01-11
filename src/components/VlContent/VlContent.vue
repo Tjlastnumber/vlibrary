@@ -8,7 +8,6 @@
   </div>
 </template>
 
-<style src="./VlContent.css"></style>
 <script>
 export default {
   name: 'VlContent',
@@ -18,3 +17,5 @@ export default {
 }
 </script>
 
+<style src="./VlContent.css">
+</style>

@@ -7,8 +7,10 @@
     </li>
     <li class="page-item"
         :class="{'disabled' : currentPage === 1}"
-        @click="clickItem(currentPage > 1 ? currentPage-1 : 1)">
-      <span v-html="prevLabel" class="page-link"></span>
+        @click="currentPage > 1 ? clickItem(currentPage - 1) : 1">
+      <span v-html="prevLabel"
+            class="page-link"
+            :class="{'disabled' : currentPage === 1}"></span>
     </li>
 
     <li class="page-item disabled" v-if="showFirstEllipsis">
@@ -33,7 +35,7 @@
 
     <li class="page-item"
         :class="{'disabled' : currentPage === totalPage}"
-        @click="clickItem(currentPage < totalPage ? currentPage + 1 : totalPage)">
+        @click="currentPage < totalPage ? clickItem(currentPage + 1) : totalPage">
       <span v-html="nextLabel" class="page-link"></span>
     </li>
     <li class="page-item"

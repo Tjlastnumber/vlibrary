@@ -27,5 +27,3 @@ export default {
   transition: all .3s ease-in;
 }
 </style>
-
-

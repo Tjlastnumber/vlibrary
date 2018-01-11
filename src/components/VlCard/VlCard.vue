@@ -12,8 +12,8 @@ export default {
 
 <style scoped>
 .vl-card {
-  color: rgba(0,0,0,0.87);
-  background-color: rgb(255,255,255);
+  /* color: rgba(0,0,0,0.87);
+  background-color: rgb(255,255,255); */
   border-radius: 2px;
   display: flex;
   display: -webkit-flex;

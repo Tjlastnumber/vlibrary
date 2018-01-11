@@ -189,9 +189,9 @@ function computedOffset (location, eRect, offset) {
 
 /**
  * 防抖函数
- * @param {回调函数} func
- * @param {触发间隔} wait
- * @param {是否立即执行} immediate
+ * @param {Function} func
+ * @param {Number} wait
+ * @param {Boolean} immediate
  */
 export function debounce(func, wait, immediate) {
     let timeout

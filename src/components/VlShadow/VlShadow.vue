@@ -4,8 +4,6 @@
   </div>
 </template>
 
-<style src="./VlShadow.css"></style>
-
 <script>
 export default {
   name: 'VlShadow',
@@ -14,3 +12,5 @@ export default {
   }
 }
 </script>
+
+<style src="./VlShadow.css"></style>

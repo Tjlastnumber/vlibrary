@@ -4,8 +4,6 @@
   </vl-shadow>
 </template>
 
-<style src="./VlSidenav.css"></style>
-
 <script>
   import Velocity from 'velocity'
   import VlShadow from '../VlShadow/VlShadow.vue'
@@ -110,3 +108,5 @@
     }
   }
 </script>
+
+<style src="./VlSidenav.css"></style>

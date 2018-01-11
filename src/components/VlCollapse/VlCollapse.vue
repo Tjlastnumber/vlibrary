@@ -18,8 +18,6 @@
   </div>
 </template>
 
-<style src="./VlCollapse.css"></style>
-
 <script>
 import Velocity from 'velocity'
 export default {
@@ -92,3 +90,6 @@ export default {
   }
 }
 </script>
+
+<style src="./VlCollapse.css">
+</style>

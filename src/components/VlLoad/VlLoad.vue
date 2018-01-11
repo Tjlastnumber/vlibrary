@@ -7,8 +7,6 @@
   </transition>
 </template>
 
-<style src="./VlLoad.css"></style>
-
 <script>
 export default {
   name: 'VlLoader',
@@ -36,3 +34,5 @@ export default {
   }
 }
 </script>
+
+<style src="./VlLoad.css"></style>

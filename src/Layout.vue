@@ -17,8 +17,7 @@
 
           <div class="vl-sidenav-content vl-scrollbar">
             <vl-collapse title="功能列表"
-                         style="color: white"
-                         class="menu-collapse "
+                         class="menu-collapse"
                          :is-open="true">
               <ul class="menu-list menu-toggle-list">
                 <li>

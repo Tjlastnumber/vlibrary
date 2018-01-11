@@ -8,8 +8,6 @@
   </transition>
 </template>
 
-<style scoped src="./VlToast.css"></style>
-
 <script>
 import { absolutePosition, Position } from '../../utils/util.js'
 export default {
@@ -150,3 +148,4 @@ export default {
 }
 </script>
 
+<style scoped src="./VlToast.css"></style>
