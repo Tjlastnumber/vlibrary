@@ -1,7 +1,7 @@
 <template>
   <div class="vl-content">
     <div class="vl-content-box">
-      <div class="vl-content-padding">
+      <div>
         <slot></slot>
       </div>
     </div>

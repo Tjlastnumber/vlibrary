@@ -71,6 +71,7 @@ export default {
 <style scoped>
 .vl-content-height {
   height: 450px;
+  padding: 24px;
 }
 .vl-content-title {
   background-color: #41b883;

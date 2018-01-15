@@ -169,3 +169,12 @@
     opacity: 0;
   }
 
+  .page-item.active .page-link {
+    background-color: #41b883 !important;
+    border-color: #41b883 !important;
+    color: white !important;
+  }
+
+  .pagination>li>a {
+    color: #41b883;
+  }

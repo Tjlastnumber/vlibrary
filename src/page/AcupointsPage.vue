@@ -138,7 +138,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vl-content-height {
   height: 450px;
 }
@@ -152,16 +152,6 @@ export default {
 .content-footer {
   position: relative;
   background-color: #41b883;
-}
-
-.page-item.active .page-link{
-  background-color: #41b883 !important;
-  border-color: #41b883 !important;
-  color: white !important;
-}
-
-.pagination > li > a {
-  color: #41b883;
 }
 
 .vl-table-content {

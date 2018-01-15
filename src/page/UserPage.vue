@@ -75,7 +75,7 @@ export default {
       questions: null,
       currentPage: 1,
       total: 1,
-      pageSize: 10
+      pageSize: 4
     }
   },
   mounted () {

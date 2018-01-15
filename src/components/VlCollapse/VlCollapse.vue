@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="vl-collapse-header" @click="click">
-      <span> {{title}} </span>
+      <span> {{ title }} </span>
       <span class="flex"></span>
       <span ref="icon" class="vl-collapse-icon" :class="'glyphicon glyphicon-menu-down'"></span>
     </div>

@@ -30,7 +30,7 @@
 }
 
 .vl-load-child-1 {
-  animation: pulse 2s linear 1.3s infinite;
+  animation: pulse 2s linear 1s infinite;
 }
 
 @keyframes pulse {

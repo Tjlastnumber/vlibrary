@@ -143,6 +143,7 @@ export default {
       this.$emit('currentPageChanged', val)
     },
     clickItem (val) {
+      if (this.currentPage === val) return
       this.currentPageChanged(val)
     }
   }

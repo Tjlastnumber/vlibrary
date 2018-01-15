@@ -1,9 +1,6 @@
 <template>
-  <div id="app" style="height: 100%">
-
-    <login-page v-if="!isLogin" @login="logining"></login-page>
-
-    <vl-layout v-else>
+  <div style="height: 100%">
+    <vl-layout>
 
       <vl-side-layout>
         <vl-sidenav class="sidenav-background" :width="272" v-model="isOpenSidenav" :toggle-width="960">
@@ -15,22 +12,30 @@
             </a>
           </header>
 
-          <div class="vl-sidenav-content vl-scrollbar">
-            <vl-collapse title="功能列表"
-                         class="menu-collapse"
-                         :is-open="true">
-              <ul class="menu-list menu-toggle-list">
-                <li>
-                  <router-link v-for="(route,index) in $router.options.routes"
-                               :key="index"
-                               :to="route.path"
-                               :active-class="'active'">
-                    {{ route.cname }}
-                  </router-link>
-                </li>
-              </ul>
-            </vl-collapse>
-          </div>
+          <!-- <div class="vl-sidenav-content"> -->
+            <vl-content class="vl-sidenav-content vl-scrollbar">
+              <vl-collapse title="功能列表"
+                          class="menu-collapse"
+                          :is-open="true">
+                <ul class="menu-list menu-toggle-list">
+                  <li>
+                    <!-- <router-link v-for="(route,index) in $router.options.routes"
+                                :key="index"
+                                :to="route.path"
+                                :active-class="'active'">
+                      {{ route.cname }}
+                    </router-link> -->
+                    <router-link v-for="(route, index) in contentRouter"
+                                 :key="index"
+                                 :to="route.path"
+                                 :active-class="'active'">
+                      {{ route.cname }}
+                    </router-link>
+                  </li>
+                </ul>
+              </vl-collapse>
+            </vl-content>
+          <!-- </div> -->
 
         </vl-sidenav>
 
@@ -60,8 +65,10 @@
         </vl-toolbar>
 
         <!-- content -->
-        <vl-content class="vl-scrollbar">
-          <slot></slot>
+        <vl-content style="padding: 32px" class="vl-scrollbar">
+          <transition name="router-fade" mode="out-in">
+            <router-view/>
+          </transition>
         </vl-content>
       </vl-content-layout>
 
@@ -103,13 +110,12 @@
   import VlCard from '@/components/VlCard/VlCard'
   import VlCardHeader from '@/components/VlCard/VlCardHeader'
   import VlCardContent from '@/components/VlCard/VlCardContent'
+  import { contentRouter } from './router/index.js'
 
   // layout components
   import VlLayout from './components/VlLayout/VlLayout.vue'
   import VlSideLayout from './components/VlLayout/VlSideLayout.vue'
   import VlContentLayout from './components/VlLayout/VlContentLayout'
-
-  import LoginPage from './page/LoginPage.vue'
 
   export default {
     name: 'Layout',
@@ -125,7 +131,6 @@
       VlContent,
       VlBreadcrumb,
       VlPopover,
-      LoginPage,
       VlCard,
       VlCardHeader,
       VlCardContent
@@ -134,15 +139,12 @@
       return {
         isOpenSidenav: true,
         isOpenSetting: false,
-        isLogin: false
+        contentRouter: contentRouter
       }
     },
     mounted () {
     },
     methods: {
-      logining () {
-        this.isLogin = true
-      },
       test () {
         console.info(this.$router)
       }
@@ -150,5 +152,7 @@
   }
 </script>
 
-<style src="./assets/css/bootstrap.css"></style>
-<style src="./main.css"></style>
+<style src="./assets/css/bootstrap.css">
+</style>
+<style src="./main.css">
+</style>
