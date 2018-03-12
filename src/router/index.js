@@ -80,10 +80,32 @@ export const LayoutRouter = [{
 // { path: '/401', component: _import('errorPage/401'), hidden: true },
 {
   path: '/',
-  name: 'Layout',
   redirect: 'Hello',
   component: Layout,
   children: contentRouter
+},
+{
+  path: '/components',
+  name: 'Components',
+  cname: '控件',
+  component: Layout,
+  children: [{
+    path: 'tablecomponent',
+    redirect: '/components/table',
+    name: 'Table Component',
+    cname: 'Table 组件',
+    children: [{
+      path: 'table',
+      name: 'Table',
+      cname: 'Table',
+      component: _import('TablePage')
+    }, {
+      path: 'userList',
+      name: 'userList',
+      cname: '用户列表',
+      component: _import('UserPage')
+    }]
+  }]
 }]
 
 export default new Router({

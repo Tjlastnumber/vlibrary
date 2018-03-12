@@ -14,17 +14,11 @@
 
           <!-- <div class="vl-sidenav-content"> -->
             <vl-content class="vl-sidenav-content vl-scrollbar">
-              <vl-collapse title="功能列表"
+              <!-- <vl-collapse title="功能列表"
                           class="menu-collapse"
                           :is-open="true">
                 <ul class="menu-list menu-toggle-list">
                   <li>
-                    <!-- <router-link v-for="(route,index) in $router.options.routes"
-                                :key="index"
-                                :to="route.path"
-                                :active-class="'active'">
-                      {{ route.cname }}
-                    </router-link> -->
                     <router-link v-for="(route, index) in contentRouter"
                                  :key="index"
                                  :to="route.path"
@@ -33,7 +27,8 @@
                     </router-link>
                   </li>
                 </ul>
-              </vl-collapse>
+              </vl-collapse> -->
+              <sidebar :routes="$router.options.routes"/>
             </vl-content>
           <!-- </div> -->
 
@@ -111,6 +106,7 @@
   import VlCardHeader from '@/components/VlCard/VlCardHeader'
   import VlCardContent from '@/components/VlCard/VlCardContent'
   import { contentRouter } from './router/index.js'
+  import Sidebar from './page/components/Sidebar.vue'
 
   // layout components
   import VlLayout from './components/VlLayout/VlLayout.vue'
@@ -133,7 +129,8 @@
       VlPopover,
       VlCard,
       VlCardHeader,
-      VlCardContent
+      VlCardContent,
+      Sidebar
     },
     data () {
       return {

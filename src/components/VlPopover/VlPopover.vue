@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { computedLocation } from '../../utils/domHelper.js'
+import { computedLocation } from '../../utils/util.js'
 export default {
   name: 'VlPopover',
   props: {

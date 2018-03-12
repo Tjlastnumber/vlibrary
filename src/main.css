@@ -92,10 +92,11 @@
   }
 
   .menu-toggle-list a {
+    text-overflow: ellipsis;
     overflow: hidden;
     position: relative;
     display: block;
-    padding: 0 16px 0 32px;
+    /* padding: 0 16px 0 32px; */
     text-transform: none;
     text-rendering: optimizeLegibility;
     border-radius: 0;
@@ -110,7 +111,7 @@
     overflow: hidden;
     text-align: left;
     text-decoration: none;
-    white-space: normal;
+    white-space: nowrap;
     width: 100%;
     font-weight: 500;
     font-style: inherit;

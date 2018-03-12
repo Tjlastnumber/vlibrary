@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div class="vl-collapse-header" @click="click">
+    <div class="vl-collapse-header" :style="comPaddingLeft" @click="click">
       <span> {{ title }} </span>
       <span class="flex"></span>
-      <span ref="icon" class="vl-collapse-icon" :class="'glyphicon glyphicon-menu-down'"></span>
+      <span ref="icon"
+            class="vl-collapse-icon"
+            :class="'glyphicon glyphicon-menu-down'"></span>
     </div>
     <transition @beforeEnter="beforeEnter"
                 @enter="enter"
@@ -28,12 +30,29 @@ export default {
   },
   props: {
     title: { type: String },
-    isOpen: { type: Boolean, default: false }
+    isOpen: { type: Boolean, default: false },
+    isChildren: { type: Boolean, default: false },
+    paddingLeft: { type: Number, default: 16 }
   },
   data () {
     return {
       priIsOpen: this.isOpen,
-      beforeToggleStyle: {}
+      beforeToggleStyle: {},
+      priPaddingLeft: this.paddingLeft
+    }
+  },
+  computed: {
+    comPaddingLeft () {
+      let style = {}
+      let paddingLeft = this.priPaddingLeft
+      if (this.isChildren) {
+        paddingLeft = paddingLeft * 2
+      }
+      style = {
+        'padding-left': paddingLeft + 'px'
+      }
+      this.$emit('update:paddingLeft', paddingLeft)
+      return style
     }
   },
   mounted () {
@@ -91,5 +110,4 @@ export default {
 }
 </script>
 
-<style src="./VlCollapse.css">
-</style>
+<style src="./VlCollapse.css"></style>
