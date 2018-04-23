@@ -2,7 +2,7 @@
 const ROOT = document.body
 const DEFAULT_DOCK = ['bottom', 'top', 'right', 'left']
 
-export const Position = {
+export const POSITION = {
   top: 'top',
   left: 'left',
   right: 'right',
@@ -21,7 +21,7 @@ export const Position = {
  * @returns {Boolean} result
  */
 export function checkDock (dock) {
-  return Object.keys(Position).indexOf(dock) > 0
+  return Object.keys(POSITION).indexOf(dock) > 0
 }
 
 /**
@@ -219,7 +219,7 @@ export function debounce(func, wait, immediate) {
 export function absolutePosition (el, parent, offset, dock) {
   if (!el) throw console.error('属性 {el} 不能为空')
   if (!parent) throw console.error('属性 {parent} 不能为空')
-  if (!dock) dock = Position.top
+  if (!dock) dock = POSITION.top
 
   let elRect = el.getBoundingClientRect()
   let parentRect = parent.getBoundingClientRect()
@@ -242,21 +242,21 @@ export function absolutePosition (el, parent, offset, dock) {
 
   // 计算 8 个位置不同的偏移量
   let positionOffset = {
-    x: dock === Position.left ||
-       dock === Position.leftBottom ||
-       dock === Position.leftTop ?
+    x: dock === POSITION.left ||
+       dock === POSITION.leftBottom ||
+       dock === POSITION.leftTop ?
        offset :
-       dock === Position.right ||
-       dock === Position.rightBottom ||
-       dock === Position.rightTop ?
+       dock === POSITION.right ||
+       dock === POSITION.rightBottom ||
+       dock === POSITION.rightTop ?
        -offset-elRect.width : 0,
-    y: dock === Position.top ||
-       dock === Position.leftTop ||
-       dock === Position.rightTop ?
+    y: dock === POSITION.top ||
+       dock === POSITION.leftTop ||
+       dock === POSITION.rightTop ?
        offset :
-       dock === Position.bottom ||
-       dock === Position.leftBottom ||
-       dock === Position.rightBottom ?
+       dock === POSITION.bottom ||
+       dock === POSITION.leftBottom ||
+       dock === POSITION.rightBottom ?
        -offset-elRect.height : 0
   }
 

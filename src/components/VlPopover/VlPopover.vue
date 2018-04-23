@@ -62,8 +62,8 @@ export default {
     },
     vlPopoverStyle () {
       let width = this.width
-      let zIndex = this.zIndex
       let height = this.height
+      let zIndex = this.zIndex
       return {
         width: typeof width === 'string' ? width : `${width}px`,
         height: typeof hieght === 'string' ? height : `${height}px`,

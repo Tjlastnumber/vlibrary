@@ -10,7 +10,7 @@
         <li v-for="(child, index) in item.children" :key="index">
             <sidebar :routes="[child]" v-if="child.children"/>
             <router-link v-else
-                         v-tooltip="child.cname"
+                         v-tooltip.transition="child.cname"
                          :style="activePaddingLeft"
                          :to="child.path"
                          :active-class="'active'">

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { absolutePosition, Position } from '../../utils/util.js'
+import { absolutePosition, POSITION } from '../../utils/util.js'
 export default {
   name: 'VlToast',
   props: {
@@ -31,7 +31,7 @@ export default {
     this.visibleTimer = null
     return {
       visible: false,
-      dock: Position.top,
+      dock: POSITION.top,
       transition: true
     }
   },

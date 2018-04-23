@@ -51,7 +51,7 @@
             </vl-toolbar-sub>
             <vl-toolbar-sub style="margin-right: 8px">
               <button class="setting-button"
-                      v-tooltip="'Setting'"
+                      v-tooltip.transition="'Setting'"
                       @click="isOpenSetting = !isOpenSetting">
                 <span class="glyphicon glyphicon-cog"></span>
               </button>
