@@ -98,13 +98,19 @@ export const LayoutRouter = [{
       path: 'table',
       name: 'Table',
       cname: 'Table',
-      component: _import('TablePage')
-    }, {
-      path: 'userList',
-      name: 'userList',
-      cname: '用户列表',
-      component: _import('UserPage')
+      component: _import('TablePage'),
+      children: [{
+        path: 'table',
+        name: 'Table',
+        cname: 'Table',
+        component: _import('TablePage')
+      }]
     }]
+  }, {
+    path: 'userList',
+    name: 'userList',
+    cname: '用户列表',
+    component: _import('UserPage')
   }]
 }]
 
