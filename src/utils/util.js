@@ -7,10 +7,10 @@ export const POSITION = {
   left: 'left',
   right: 'right',
   bottom: 'bottom',
-  leftTop: 'leftTop',
-  rightTop: 'rightTop',
-  leftBottom: 'leftBottom',
-  rightBottom: 'rightBottom',
+  leftTop: 'left-top',
+  rightTop: 'right-top',
+  leftBottom: 'left-bottom',
+  rightBottom: 'right-bottom',
   middle: 'middle'
 }
 
@@ -88,7 +88,7 @@ export function getLocation (el, parent) {
     height,
     margin: {
       top: {
-        dock: 'top',
+        dock: POSITION.top,
         computed: 'height',
         size: top,
         start: vertex.tl,
@@ -96,7 +96,7 @@ export function getLocation (el, parent) {
         end: vertex.tr
       },
       bottom: {
-        dock: 'bottom',
+        dock: POSITION.bottom,
         computed: 'height',
         size: ph - bottom,
         start: vertex.bl,
@@ -104,7 +104,7 @@ export function getLocation (el, parent) {
         end: vertex.br
       },
       left: {
-        dock: 'left',
+        dock: POSITION.left,
         computed: 'width',
         size: left,
         start: vertex.tl,
@@ -112,7 +112,7 @@ export function getLocation (el, parent) {
         end: vertex.bl
       },
       right: {
-        dock: 'right',
+        dock: POSITION.right,
         computed: 'width',
         size: pw - right,
         start: vertex.tr,
@@ -174,15 +174,15 @@ export function computedLocation (el, target, parent, offset, dock) {
 function computedOffset (location, eRect, offset) {
   let position = {}
 
-  position.x = location.dock === 'top' ? -eRect.width / 2 :
-               location.dock === 'right' ? offset :
-               location.dock === 'left' ? -eRect.width - offset :
-               location.dock === 'bottom' ? -eRect.width / 2 : 0
+  position.x = location.dock === POSITION.top ? -eRect.width / 2 :
+               location.dock === POSITION.right ? offset :
+               location.dock === POSITION.bottom ? -eRect.width / 2 :
+               location.dock === POSITION.left ? -eRect.width - offset : 0
 
-  position.y = location.dock === 'top' ? -eRect.height - offset :
-               location.dock === 'right' ? -eRect.height / 2 :
-               location.dock === 'left' ? -eRect.height / 2 :
-               location.dock === 'bottom' ? offset : 0
+  position.y = location.dock === POSITION.top ? -eRect.height - offset :
+               location.dock === POSITION.right ? -eRect.height / 2 :
+               location.dock === POSITION.bottom ? offset : 
+               location.dock === POSITION.left ? -eRect.height / 2 : 0
 
   return position
 }
@@ -195,9 +195,9 @@ function computedOffset (location, eRect, offset) {
  */
 export function debounce(func, wait, immediate) {
     let timeout
-    return function() {
+    return () => {
       let context = this, args = arguments
-      let later = function() {
+      let later = () => {
       timeout = null
       if (!immediate) func.apply(context, args)
     }
@@ -233,31 +233,19 @@ export function absolutePosition (el, parent, offset, dock) {
     left: { x: parentRect.left, y: centerY },
     right: { x: parentRect.left + parentRect.width, y: centerY },
     bottom: { x: centerX, y: parentRect.top + parentRect.height },
-    leftTop: { x: parentRect.left, y: parentRect.top },
-    rightTop: { x: parentRect.left + parentRect.width, y: parentRect.top},
-    leftBottom: { x: parentRect.left, y: parentRect.top + parentRect.height},
-    rightBottom: { x: parentRect.left + parentRect.width, y: parentRect.top + parentRect.height},
+    'left-top': { x: parentRect.left, y: parentRect.top },
+    'right-top': { x: parentRect.left + parentRect.width, y: parentRect.top},
+    'left-bottom': { x: parentRect.left, y: parentRect.top + parentRect.height},
+    'right-bottom': { x: parentRect.left + parentRect.width, y: parentRect.top + parentRect.height},
     middle: { x: parentRect.left + centerX, y: parentRect.top + centerY }
   }
 
   // 计算 8 个位置不同的偏移量
   let positionOffset = {
-    x: dock === POSITION.left ||
-       dock === POSITION.leftBottom ||
-       dock === POSITION.leftTop ?
-       offset :
-       dock === POSITION.right ||
-       dock === POSITION.rightBottom ||
-       dock === POSITION.rightTop ?
-       -offset-elRect.width : 0,
-    y: dock === POSITION.top ||
-       dock === POSITION.leftTop ||
-       dock === POSITION.rightTop ?
-       offset :
-       dock === POSITION.bottom ||
-       dock === POSITION.leftBottom ||
-       dock === POSITION.rightBottom ?
-       -offset-elRect.height : 0
+    x: dock.indexOf(POSITION.left) !== -1 ? offset :
+       dock.indexOf(POSITION.right) !== -1 ? -offset-elRect.width : 0,
+    y: dock.indexOf(POSITION.top) !== -1 ? offset :
+       dock.indexOf(POSITION.bottom) !== -1 ? -offset-elRect.height : 0
   }
 
   let result = {

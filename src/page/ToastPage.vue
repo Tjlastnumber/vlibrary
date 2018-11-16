@@ -10,13 +10,13 @@
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="position" id="cb_position2" value="leftTop" v-model="position" >
+            <input type="radio" name="position" id="cb_position2" value="left-top" v-model="position" >
             Left Top
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="position" id="cb_position3" value="leftBottom" v-model="position" >
+            <input type="radio" name="position" id="cb_position3" value="left-bottom" v-model="position" >
             Left Bottom
           </label>
         </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="position" id="cb_position7" value="rightBottom" v-model="position" >
+            <input type="radio" name="position" id="cb_position7" value="right-bottom" v-model="position" >
             Right Buttom
           </label>
         </div>
@@ -48,6 +48,12 @@
           <label>
             <input type="radio" name="position" id="cb_position8" value="right" v-model="position" >
             right
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="position" id="cb_position8" value="right-top" v-model="position" >
+            Right Top
           </label>
         </div>
         {{ position }}

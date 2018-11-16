@@ -89,29 +89,7 @@ export const LayoutRouter = [{
   name: 'Components',
   cname: '控件',
   component: Layout,
-  children: [{
-    path: 'tablecomponent',
-    redirect: '/components/table',
-    name: 'Table Component',
-    cname: 'Table 组件',
-    children: [{
-      path: 'table',
-      name: 'Table',
-      cname: 'Table',
-      component: _import('TablePage'),
-      children: [{
-        path: 'table',
-        name: 'Table',
-        cname: 'Table',
-        component: _import('TablePage')
-      }]
-    }]
-  }, {
-    path: 'userList',
-    name: 'userList',
-    cname: '用户列表',
-    component: _import('UserPage')
-  }]
+  children: contentRouter
 }]
 
 export default new Router({
